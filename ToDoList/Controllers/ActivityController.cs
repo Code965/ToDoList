@@ -6,10 +6,9 @@ using System.Web.Mvc;
 
 namespace ToDoList.Controllers
 {
-    public class HomeController : Controller
+    public class ActivityController : Controller
     {
-
-        //Fa il login
+        // GET: Activity
         public ActionResult Index()
         {
             return View();

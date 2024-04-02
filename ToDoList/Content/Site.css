@@ -22,3 +22,45 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.flex_container{
+    display:flex;
+}
+
+.align_center{
+    align-items:center;
+}
+
+.justify_content{
+    justify-content:center;
+}
+
+.login {
+    padding:10px;
+    width:50%;
+    border-radius:5px;
+    -moz-box-shadow: 0 0 5px #333333;
+    -webkit-box-shadow: 0 0 5px #333333;
+    box-shadow: 0 0 5px #333333;
+}
+
+.registration {
+    padding: 10px;
+    width: 40%;
+    border-radius: 5px;
+    -moz-box-shadow: 0 0 5px #333333;
+    -webkit-box-shadow: 0 0 5px #333333;
+    box-shadow: 0 0 5px #333333;
+}
+
+.inpt{
+    width: 80%;
+    max-width:none;
+}
+
+.registration .btnC {
+    display:flex;
+    justify-content:end;
+
+
+}

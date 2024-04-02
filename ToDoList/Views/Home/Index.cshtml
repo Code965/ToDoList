@@ -2,30 +2,39 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<div class="row justify_content " >
+    <div class="col-md-6 loginBox flex_container align_center justify_content" style="flex-direction:column; gap:10px;">
+        <form class="flex_container login" style="flex-direction:column; gap:10px;">
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+            <div class="flex_container justify_content align_center" style="flex-direction:column; gap:10px;">
+                <h2>Login</h2>
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                </svg>
+
+            </div>
+
+            <input type="type" name="name" value="" placeholder="email" />
+            <input type="type" name="name" value="" placeholder="password" />
+
+            <button> Login </button>
+            <div>
+                <input type="checkbox" name="name" value="" />
+
+                <label>Ricorca le credenziali</label>
+
+            </div>
+            <div class="flex_container align_center justify_content"  style="flex-direction:column; gap:10px;">
+                <a href="@Url.Action("ForgotPassword","Account")">Password dimenticata</a>
+                <a href="@Url.Action("Registrati","Account")">Crea un account</a>
+            </div>
+        </form>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+    <div class="col-md-6" >
+        <img src="https://img.freepik.com/premium-vector/list-icon-with-hand-drawn-text-checklist-task-list-vector-illustration-flat-style-white-background_157943-30069.jpg" width="400" height="400" alt="Alternate Text" />
     </div>
 </div>
+        
