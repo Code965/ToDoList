@@ -6,58 +6,62 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ToDoList.Models;
+using ToDoList.Manager;
 
 namespace ToDoList.Controllers
 {
+
     public class HomeController : Controller
     {
-
-        //Fa il login
         public ActionResult Index()
         {
             return View();
         }
 
-        [HttpPost]
         [AllowAnonymous]
-        public ActionResult Authenticate( string email, string password)
+        [HttpPost]
+        public ActionResult Login(string email, string password)
         {
-            //In questo caso crea il token
-            var key = Startup.GetSymmetricSecurityKey();
-            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var jwtToken = new JwtSecurityToken(
-                issuer: Startup.GetIssuer(),
-                audience: Startup.GetAudience(),
-                expires: DateTime.Now.AddMinutes(60),
-                signingCredentials: credentials);
+            var utente = UsersManager.findUser(email, password); 
 
-            string token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
-            var claims = new List<System.Security.Claims.Claim>();
+            if (utente != null)
+            {
 
-            claims.Add(new System.Security.Claims.Claim(type: System.Security.Claims.ClaimTypes.Sid, value:"8675309"));
-            claims.Add(new System.Security.Claims.Claim(type: System.Security.Claims.ClaimTypes.Name, value:"Domenico"));
-            claims.Add(new System.Security.Claims.Claim(type: System.Security.Claims.ClaimTypes.Surname, value:"Giannone"));
-            claims.Add(new System.Security.Claims.Claim(type: System.Security.Claims.ClaimTypes.Role, value:"Admin"));
+                if (email == utente.email && password == utente.password)
+                {
+                    var key = Startup.GetSymmetricSecurityKey();
+                    var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+                    var claims = new List<System.Security.Claims.Claim>();
+
+                    //valori dell'utente che fa il login
+                    claims.Add(new System.Security.Claims.Claim(type: System.Security.Claims.ClaimTypes.Sid, value: "8675309"));
+                    claims.Add(new System.Security.Claims.Claim(type: System.Security.Claims.ClaimTypes.Name, value: "Domenico"));
+                    claims.Add(new System.Security.Claims.Claim(type: System.Security.Claims.ClaimTypes.Surname, value: "Giannone"));
+                    claims.Add(new System.Security.Claims.Claim(type: System.Security.Claims.ClaimTypes.Role, value: "Admin"));
 
 
-            return Json(new { token = jwtToken }); //mi ritorna il token
-        
+                    //pacchetto del token con tutti i valori necessari
+                    var jwtToken = new JwtSecurityToken(
+                        issuer: Startup.GetIssuer(),
+                        audience: Startup.GetAudience(),
+                        expires: DateTime.Now.AddMinutes(60),
+                        claims: claims,
+                        signingCredentials: credentials);
 
-        [HttpGet]
+                    string token = new JwtSecurityTokenHandler().WriteToken(jwtToken); //creazione del token vera e propria
+                    return Json(new { token = token, email = utente.email, id = utente.id_user });
+                }
+                else
+                {
+                    return Json(new { error = "errore utente non trovato" });
+                }
+            }
+            else
+            {
+                return Json(new { error = "utente non esistente" });
+            }
 
-        public ActionResult GetSomeData()
-        {
-            var utente = new Users() {
-
-                id_user = System.Security.Claims.ClaimsPrincipal.Current.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.Sid).Value,
-                name = User.Identity.Name
-
-                
-            };
-            
-
-            return Json(utente, JsonRequestBehavior.AllowGet);
         }
-
     }
 }

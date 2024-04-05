@@ -10,12 +10,45 @@ using ToDoList.Models;
 using System.Security.Cryptography;
 using System.IO;
 using System.Text;
+using ToDoList.Utils;
 
 namespace ToDoList.Manager
 {
     public class UsersManager
     {
         private readonly static string connString = ConfigurationManager.ConnectionStrings["ToDoList"].ConnectionString;
+
+        public static UsersViewModel findUser(string email, string password)
+        {
+            int count = 0;
+
+            UsersViewModel user =  new UsersViewModel();
+
+            using (SqlConnection dbConn = new SqlConnection(connString))
+            {
+                using (SqlCommand cmd = new SqlCommand("[dbo].[usp_findUser]", dbConn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@email", email;
+                    cmd.Parameters.AddWithValue("@password", password); //cosi cripto la password
+
+                    cmd.Parameters.Add("@count", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    dbConn.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        user.name = dr["name"].ToString(),
+                        user.surname = dr["surname"].ToString(),
+                        user.email = dr["email"].ToString(),
+                        user.encryptPassword = Decrypt(dr["password"].ToString()),
+                        user.password = dr["password"].ToString(),
+                        user.dateBirth = Convert.ToDateTime(dr["dateBirth"].ToString()),
+                    }
+                    
+                }
+            }
+
+            return user;
+        }
 
         public static bool insertUser(Users utente, out int ReturnCode)
         {
