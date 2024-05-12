@@ -36,12 +36,17 @@ textarea {
 }
 
 .login {
-    padding:10px;
-    width:50%;
-    border-radius:5px;
-    -moz-box-shadow: 0 0 5px #333333;
-    -webkit-box-shadow: 0 0 5px #333333;
-    box-shadow: 0 0 5px #333333;
+    padding: 10px;
+    width: 50%;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.login button {
+    height: 50px;
+    outline: none;
+    list-style: none;
+    border-radius: 5px;
 }
 
 .registration {
@@ -53,14 +58,24 @@ textarea {
     box-shadow: 0 0 5px #333333;
 }
 
-.inpt{
-    width: 80%;
-    max-width:none;
-}
+
 
 .registration .btnC {
     display:flex;
     justify-content:end;
+}
 
-
+.inpt_login {
+    width: 100%;
+    max-width: none;
+    border: 0.5px grey solid;
+    box-sizing: border-box;
+    border-radius: 5px;
+    list-style: none;
+    height: 50px;
+    outline: none;
+    font-family: inherit;
+    font-size: var(--reactist-font-size-body);
+    margin: 0;
+    padding: 5px;
 }

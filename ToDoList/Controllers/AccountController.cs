@@ -58,6 +58,7 @@ namespace ToDoList.Controllers
             return Json(new { ok = true, val = utente }, JsonRequestBehavior.AllowGet); //torna il model
         }
 
+        
         public ActionResult ForgotPassword()
         {
             return View();
