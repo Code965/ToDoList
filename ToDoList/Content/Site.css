@@ -35,7 +35,7 @@ textarea {
     justify-content:center;
 }
 
-.login {
+.login{
     padding: 10px;
     width: 50%;
     border-radius: 5px;
@@ -47,23 +47,40 @@ textarea {
     outline: none;
     list-style: none;
     border-radius: 5px;
+    border: none;
 }
 
 .registration {
     padding: 10px;
     width: 40%;
-    border-radius: 5px;
-    -moz-box-shadow: 0 0 5px #333333;
-    -webkit-box-shadow: 0 0 5px #333333;
-    box-shadow: 0 0 5px #333333;
 }
-
-
 
 .registration .btnC {
-    display:flex;
-    justify-content:end;
+
+    margin-top:20px;
+    flex-direction:column;
+    gap:5px;
 }
+
+.registration .btnC a{
+
+    font-size:10px;
+}
+
+.registration .btnC button {
+    outline: none;
+    max-width:none;
+    list-style: none;
+    border:none;
+    height:50px;
+    border-radius: 5px;
+   
+}
+
+    .registration .btnC button:hover {
+        background-color: #77797A;
+        color: white;
+    }
 
 .inpt_login {
     width: 100%;
@@ -78,4 +95,35 @@ textarea {
     font-size: var(--reactist-font-size-body);
     margin: 0;
     padding: 5px;
+}
+
+
+.inpt_create {
+    width: 100%;
+    max-width: none;
+    border: 0.5px grey solid;
+    box-sizing: border-box;
+    border-radius: 5px;
+    list-style: none;
+    height: 50px;
+    outline: none;
+    font-family: inherit;
+    font-size: var(--reactist-font-size-body);
+    margin: 0;
+    padding: 5px;
+}
+
+
+.list-nav{
+    gap:50px;
+    width:90%;
+    list-style:none;
+}
+
+.intro{
+    gap:20px;
+}
+
+.icon_colum{
+    flex-direction:column;
 }
