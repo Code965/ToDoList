@@ -27,11 +27,10 @@ namespace ToDoList.Manager
             //Passo i valori alla store procedure facendo attenzione perchè a sinistra sono i nomi della store, a destra i valori che gli passo 
             cmd.Parameters.AddWithValue("@name", activity.name);
             cmd.Parameters.AddWithValue("@description", activity.description);
-            cmd.Parameters.AddWithValue("@date", activity.date);
+            cmd.Parameters.AddWithValue("@date", activity.dateActivity);
             cmd.Parameters.AddWithValue("@priority", activity.priority);
             cmd.Parameters.AddWithValue("@category", activity.category);
            
-
             cmd.Parameters.Add("@ReturnCode", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
             int retCode = 0;
 
@@ -48,22 +47,23 @@ namespace ToDoList.Manager
 
         public static List<Activity> findActivity(DateTime today) //mi deve trovare tutte le attività filtrate con la data di oggi
         {
-            int count = 0;
+            int returnCode = 0;
+
             List<Activity> retval = new List<Activity>();
             using (SqlConnection dbConn = new SqlConnection(connString))
             {
-                using (SqlCommand cmd = new SqlCommand("", dbConn)) //eseguo la store procedure
+                using (SqlCommand cmd = new SqlCommand("usp_findActivityToday", dbConn)) //eseguo la store procedure
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@today", today);
-                    cmd.Parameters.Add("@count", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@ReturnCode", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
                     dbConn.Open();
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         retval = dr.BindToList<Activity>();
                     }
 
-                    count = Convert.ToInt32(cmd.Parameters["@count"].Value);
+                    returnCode = Convert.ToInt32(cmd.Parameters["@ReturnCode"].Value);
                 }
             }
 

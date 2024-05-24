@@ -22,6 +22,12 @@ namespace ToDoList.Controllers
             return View();
         }
 
+        public ActionResult Profile()
+        {
+            return View();
+        }
+
+
         public ActionResult Registrati()
         {
             return View();

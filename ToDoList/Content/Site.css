@@ -27,6 +27,14 @@ textarea {
     display:flex;
 }
 
+.flex_column{
+    flex-direction:column;
+}
+.gap_block{
+    gap:5px;
+}
+
+
 .align_center{
     align-items:center;
 }
@@ -77,10 +85,10 @@ textarea {
    
 }
 
-    .registration .btnC button:hover {
-        background-color: #77797A;
-        color: white;
-    }
+.registration .btnC button:hover {
+    background-color: #77797A;
+    color: white;
+}
 
 .inpt_login {
     width: 100%;
@@ -126,4 +134,16 @@ textarea {
 
 .icon_colum{
     flex-direction:column;
+}
+
+.navbar{
+    margin-top:10%;
+}
+
+.card{
+    width:20%;
+    padding:10px;
+    border:0.5px solid black;
+    
+
 }

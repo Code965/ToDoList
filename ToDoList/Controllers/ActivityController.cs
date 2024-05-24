@@ -19,36 +19,29 @@ namespace ToDoList.Controllers
         }
 
         [HttpPost]
-        public JsonResult insertActivity( ActivityViewModels activity)
+        public JsonResult newActivity( string name, string description, DateTime date, int priority, int category)
         {
-
-
-            TryValidateModel(activity);
-            if (ModelState.IsValid)
-            {
                 //CREO UN OGGETTO UTENTE a cui assegno i valori del ViewModel
-                Activity utenteObj = new Activity
+                Activity activityObj = new Activity
                 {
-                    name = activity.name,
-                    description = activity.description,
-                    date = activity.date,
-                    priority = activity.priority,
-                    category = activity.category
+                    name = name,
+                    description = description,
+                    dateActivity = date,
+                    priority = priority,
+                    category = category
                 };
 
                 try
                 {
                     int ReturnCode = 0;
-                    ActivityManager.insertActivity(utenteObj, out ReturnCode);
+                    ActivityManager.insertActivity(activityObj, out ReturnCode);
 
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("CustomError", "Errore durante la creazione dell'utente ");
+                    ModelState.AddModelError("CustomError", "Errore durante la creazione dell'attività ");
                 }
-            }
-
-
+            
             return Json(new { ok = "inserito" }, JsonRequestBehavior.AllowGet);
         }
 
@@ -64,6 +57,8 @@ namespace ToDoList.Controllers
                retval
             }, JsonRequestBehavior.AllowGet);
         }
+
+
 
 
 

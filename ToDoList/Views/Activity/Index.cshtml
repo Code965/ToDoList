@@ -23,6 +23,24 @@
 
 <div>
     <h2>Oggi - @oggi</h2>
+
+    <div class="card flex_container align_center justify_content flex_column">
+        <div class="flex_container" style="align-self:flex-start">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-list-check" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0" />
+            </svg>
+
+            <span id="nome"></span>
+            <span id="data"></span>
+            <span id="categoria"></span>
+            <span id="priorità"></span>
+        </div>
+
+        <div id="descrizione"> descrizione</div>
+
+    </div>
+
 </div>
 
 <div>
@@ -39,7 +57,7 @@
 </div>
 
 
-<nav class="flex_container">
+<nav class="navbar flex_container">
 
     <ul class="list-nav flex_container align_center justify_content">
 
@@ -72,23 +90,27 @@
 
         </li>
 
-        <li class="flex_container align_center justify_content icon_colum">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
-            </svg> Calendario
+        <li >
+            <a class="flex_container align_center justify_content icon_colum" href="@Url.Action("Index", "Calendar")">
+                <svg style="color:black;" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                </svg> Calendario
+            </a>
+          
         </li>
 
-        <li class="flex_container align_center justify_content icon_colum">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
-                <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
-                <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.4 5.4 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2z" />
-            </svg> Account
+        <li>
+            <a class="flex_container align_center justify_content icon_colum" href="@Url.Action("Profile", "Account")">
+                <svg style="color:black;" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
+                    <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                    <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.4 5.4 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2z" />
+                </svg> Account
+            </a>
+           
         </li>
 
 
     </ul>
-
-
 
 </nav>
 
@@ -103,9 +125,51 @@
 
     $(document).ready(function () {
 
-        console.log("ciao");
+        var today = new Date();
+        var day = today.getDate();
+        var month = (today.getMonth() + 1).toString().padStart(2,'0');
+        var year = today.getFullYear();
+        var hh = today.getHours();
+        var mm = today.getMinutes();
+        var ss = today.getSeconds();
+
+        var currentDate = year + '-' + month + '-' + day;
+
+        console.log(currentDate);
+
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("ActivityList", "Activity")?today=' + currentDate ,
+            success: function (response) {
+                if (response.length != 0) {
+                    //mi ritorna un array, quindi lo ciclo.
+
+       
+                    $.each(response, function (i, elemento) {
+                       /* console.log(elemento)*/
+                        $.each(elemento, function (i, e) {
+
+                            console.log(e.name, e.description)
+
+
+                            $("#nome").text(e.name);
+                            $('#data').text(e.dateActivity);
+                            $('#descrizione').text(e.description);
+                            $('#categoria').text(e.category)
+                            $('#priorità').text(e.priority)
+                        });
+                    })
+                } else {
+                    console.log("vuoto")
+                }
+            }
+        });
 
     });
+
+
+
+           
 
     $("#checkActivity").on('click', function () {
 
@@ -114,28 +178,78 @@
             content: '' +
                 '<form action="" class="formName">' +
                 '<div class="form-group">' +
-                '<label>Inserisci la tua attività</label>' +
-                '<input type="text" placeholder="Your name" class="name form-control" required />' +
+
+                    '<input type="text" placeholder="Nome" class="name form-control" required />' +
+                    '<input type="text" placeholder="Descrizione" class="description form-control" required />' +
+                    '<input type="datetime-local" class="date form-control" required />' +
+
+                    '<div class="flex_container icon_colum">' +
+                        '<div class="flex_container gap_block  " >' +
+
+                            ' <label for="dog-names">Priorità </label> ' +
+                            ' <select  name="dog-names" id="priority"> ' +
+                               ' <option value="1"> 1</option> ' +
+                                ' <option value="2">2 </option> '+
+                                ' <option value="3">3</option> '+
+                                '<option value="4">4</option> '+
+                            '</select>' +
+
+                            ' <label for="dog-names">Categoria</label> ' +
+                            ' <select name="dog-names" id="category"> ' +
+                            ' <option value="1"> 1</option> ' +
+                            ' <option value="2">2 </option> ' +
+                            ' <option value="3">3</option> ' +
+                            '<option value="4">4</option> ' +
+                            '</select>' +
+                        '</div>' +
+                    '</div>' +
                 '</div>' +
                 '</form>',
+
             buttons: {
                 formSubmit: {
                     text: 'Submit',
                     btnClass: 'btn-blue',
                     action: function () {
+
                         var name = this.$content.find('.name').val();
+                        var description = this.$content.find('.description').val();
+                        var data = this.$content.find('.date').val();
+                        var priority =$('#priority').val();
+                        var category = $('#category').val();
+
+
                         if (!name) {
-                            $.alert('provide a valid name');
+                            $.alert('nome non inserito');
+                            return false;
+                        } else if (!description) {
+                            $.alert('descrizione non inserita');
+                            return false;
+                        } else if (!data) {
+                            $.alert('data non inserita');
+                            return false;
+                        } else if (!priority) {
+                            $.alert('priorità non inserita');
+                            return false;
+                        } else if (!category) {
+                            $.alert('categoria non inserita');
                             return false;
                         }
-                        $.alert('Your name is ' + name);
+                        $.ajax({
+                        type: "POST",
+                            url: '@Url.Action("newActivity", "Activity")?name=' + name + '&description=' + description + '&date=' + data + '&priority=' + priority + '&category=' + category ,
+                        success: function (response) {
+
+                            $.alert('Attività aggiunta');
+                            }
+                        })
+
+
                     }
                 },
                 cancel: function () {
-                    text:'Annulla',
-                    $.alert('Annullato!');
-                },
 
+                },
             }
         });
 
