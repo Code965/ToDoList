@@ -20,7 +20,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: none;
 }
 
 .flex_container{
@@ -122,14 +122,20 @@ textarea {
 }
 
 
-.list-nav{
-    gap:50px;
-    width:90%;
-    list-style:none;
+.list-nav {
+    gap: 50px;
+    width: 90%;
+    padding: 10px;
+    list-style: none;
 }
 
-.intro{
-    gap:20px;
+.intro_div {
+    margin-bottom: 50px;
+}
+.intro_div .intro {
+    gap: 20px;
+    font-size: 100px;
+  
 }
 
 .icon_colum{
@@ -138,12 +144,47 @@ textarea {
 
 .navbar{
     margin-top:10%;
+  
 }
 
-.card{
-    width:20%;
+.card {
+    width: 20%;
+    margin-top: 20px;
+    flex-direction:column;
+    padding: 10px;
+    border-radius:5px;
+    -moz-box-shadow: 0 0 2px #333333;
+    -webkit-box-shadow: 0 0 2px #333333;
+    box-shadow: 0 0 2px #333333;
+}
+
+
+
+.inpt_search {
+    padding: 5px;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    outline: none;
+    -moz-box-shadow: 0 0 2px #333333;
+    -webkit-box-shadow: 0 0 2px #333333;
+    box-shadow: 0 0 2px #333333;
+}
+
+.icon_search_input {
+    -moz-box-shadow: 0 0 2px #333333;
+    border-radius:5px;
     padding:10px;
-    border:0.5px solid black;
-    
-
+    -webkit-box-shadow: 0 0 2px #333333;
+    box-shadow: 0 0 2px #333333;
+    margin-top: 20px;
+    font-size: 20px;
 }
+
+#ActivityList{
+    gap:15px;
+}
+
+
