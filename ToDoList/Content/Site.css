@@ -26,6 +26,13 @@ textarea {
 .flex_container{
     display:flex;
 }
+.flex_wrap{
+    flex-wrap:wrap;
+}
+
+/*.flex_gap{
+    gap:5px;
+}*/
 
 .flex_column{
     flex-direction:column;
@@ -45,7 +52,7 @@ textarea {
 
 .login{
     padding: 10px;
-    width: 50%;
+    width: 80%;
     border-radius: 5px;
     box-sizing: border-box;
 }
@@ -91,7 +98,7 @@ textarea {
 }
 
 .inpt_login {
-    width: 100%;
+    width: 120%;
     max-width: none;
     border: 0.5px grey solid;
     box-sizing: border-box;
@@ -135,7 +142,6 @@ textarea {
 .intro_div .intro {
     gap: 20px;
     font-size: 100px;
-  
 }
 
 .icon_colum{
@@ -143,15 +149,13 @@ textarea {
 }
 
 .navbar{
-    margin-top:10%;
-  
+    margin-top:5%;
 }
 
-.card {
-    width: 20%;
-    margin-top: 20px;
-    flex-direction:column;
-    padding: 10px;
+.card{
+    width: 15%;
+    gap:10px;
+    padding: 1%;
     border-radius:5px;
     -moz-box-shadow: 0 0 2px #333333;
     -webkit-box-shadow: 0 0 2px #333333;
@@ -160,7 +164,8 @@ textarea {
 
 
 
-.inpt_search {
+
+.inpt_search{
     padding: 5px;
     width: 100%;
     margin-top: 20px;
@@ -184,7 +189,18 @@ textarea {
 }
 
 #ActivityList{
-    gap:15px;
+    gap:10px;
+    margin-top: 10px;
+}
+
+#ExpiredActivities {
+    gap: 5px;
+    margin-top: 10px;
 }
 
 
+.info_profile{
+    background-color:beige;
+    border-radius:5px;
+    
+}

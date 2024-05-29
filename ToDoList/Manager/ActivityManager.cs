@@ -70,5 +70,40 @@ namespace ToDoList.Manager
             return retval; //mi faccio tornare 
         }
 
+        public static List<Activity> findExpiredActivities(DateTime today) //mi deve trovare tutte le attività filtrate con la data di oggi
+        {
+            int returnCode = 0;
+
+            List<Activity> retval = new List<Activity>();
+            using (SqlConnection dbConn = new SqlConnection(connString))
+            {
+                using (SqlCommand cmd = new SqlCommand("usp_findExpiredActivities", dbConn)) //eseguo la store procedure
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@today", today);
+                    cmd.Parameters.Add("@ReturnCode", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+                    dbConn.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        retval = dr.BindToList<Activity>();
+                    }
+
+                    returnCode = Convert.ToInt32(cmd.Parameters["@ReturnCode"].Value);
+                }
+            }
+
+            return retval; //mi faccio tornare 
+        }
+
+
+
+
+
+
+
+
+
+
+
     }
 }

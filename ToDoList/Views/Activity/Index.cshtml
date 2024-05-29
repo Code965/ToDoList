@@ -33,23 +33,27 @@
             <input type="text" name="name" class="inpt_search" value="" placeholder="cerca attività" />
         </div>
 
-        <div id="ActivityList" class="flex_container">
+        <div id="ActivityList" class="flex_container flex_wrap flex_gap">
             
 
         </div>
 
     </div>
 
-    <div class="col-md-12">
+    <!--<div class="col-md-12">
         <h2>Scadute</h2>
         <div class="flex_container" style="gap:10px">
             <i class="glyphicon glyphicon-search flex_container align_center justify_content icon_search_input"></i>
             <input type="text" name="name" class="inpt_search" value="" placeholder="cerca attività" />
         </div>
 
+        <div id="ExpiredActivities" class="flex_container flex_wrap flex_gap">
+
+
+        </div>-->
 
         @* Se le attività hanno una data maggiore rispetto a quella di oggi sono scadute. *@
-    </div>
+    <!--</div>-->
 
     <div class="col-md-12">
         <h2>Note</h2>
@@ -73,7 +77,7 @@
     </div>
 
 
-    <nav class="navbar flex_container col-md-12">
+    <nav class="navbar flex_container align_center justify_content col-md-12">
 
         <ul class="list-nav flex_container align_center justify_content">
 
@@ -99,12 +103,12 @@
                 </svg> Assemblea
             </li>
 
-            <li class="flex_container align_center justify_content icon_colum">
+            @*<li class="flex_container align_center justify_content icon_colum">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                 </svg> Cerca Attività
 
-            </li>
+            </li>*@
 
             <li>
                 <a class="flex_container align_center justify_content icon_colum" href="@Url.Action("Index", "Calendar")">
@@ -155,55 +159,54 @@
             url: '@Url.Action("ActivityList", "Activity")?today=' + currentDate ,
             success: function (response) {
                 if (response.length != 0) {
-                    
+
                     $.each(response, function (i, elemento) {
 
                         $.each(elemento, function (j, e) {
 
+                            //creo gli oggetti
 
                             var box_card = $('<div><div/>', {
 
-                                class:"card",
                             });
-
 
                             var titolo = $('<p>', {
-                                text: '' + e.name + '',
+                                text:  e.name,
                                 target: '_blank',
                                 style: 'color:black',
-
                             });
 
 
-                            var data = new Date();
-
-                            data = e.dateActivity;
-                            console.log(data)
-
                             var descrizione = $('<p>', {
-                                text: '' + e.description + '',
+                                text: e.description ,
                                 target: '_blank',
-                                style: 'color:black',
-
+                                style: 'display:flex',
                             });
 
                             var categoria = $('<p>', {
-                                text: '' + e.category + '',
+                                text: e.category,
                                 target: '_blank',
                                 style: 'color:black',
-
                             });
 
                             var priorita = $('<p>', {
-                                text: '' + e.priority + '',
+                                text: e.priority,
                                 target: '_blank',
                                 style: 'color:black',
-
                             });
 
-                            box_card.addClass("card");
+                            var date001 = e.dateActivity;
+                            // Estrai il timestamp dai millisecondi
+                            var timestamp = parseInt(date001.replace('/Date(', '').replace(')/', ''), 10);
+                            // Crea un oggetto Date
+                            var date = new Date(timestamp);
+                            // Formatta la data nel formato dd/mm/yyyy
+                            var formattedDate = date.toLocaleDateString('it-IT');
+
+                            //aggiungo
+                            box_card.addClass("card")
                             box_card.append(titolo);
-                            box_card.append(data);
+                            box_card.append(formattedDate);
                             box_card.append(descrizione);
                             box_card.append(categoria);
                             box_card.append(priorita);
@@ -211,7 +214,84 @@
                             $("#ActivityList").append(box_card);
 
                         })
-                     
+
+
+                    });
+                } else {
+                    console.log("vuoto");
+                }
+            }
+        });
+
+
+
+
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("ExpiredActivities", "Activity")?today=' + currentDate ,
+            success: function (response) {
+                if (response.length != 0) {
+
+                    $.each(response, function (i, elemento) {
+
+                        $.each(elemento, function (j, e) {
+
+                            var box_card = $('<div><div/>', {
+
+                            });
+
+
+                            var titolo = $('<p>', {
+                                text:  e.name,
+                                target: '_blank',
+                                style: 'color:black',
+
+                            });
+
+                            //DATA SISTEMATA 
+                            var date001 = e.dateActivity;
+                            // Estrai il timestamp dai millisecondi
+                            var timestamp = parseInt(date001.replace('/Date(', '').replace(')/', ''), 10);
+                            // Crea un oggetto Date
+                            var date = new Date(timestamp);
+                            // Formatta la data nel formato dd/mm/yyyy
+                            var formattedDate = date.toLocaleDateString('it-IT'); // "28/05/2024"
+
+                           
+                            var check = $(":checkbox");
+                            var descrizione = $('<p>', {
+                                text:  e.description,
+                                target: '_blank',
+                                style: 'height:10px',
+
+                            });
+
+                            var categoria = $('<p>', {
+                                text: e.category,
+                                target: '_blank',
+                                style: 'color:black',
+
+                            });
+
+                            var priorita = $('<p>', {
+                                text: e.priority,
+                                target: '_blank',
+                                style: 'color:black',
+
+                            });
+
+                            box_card.addClass("card")
+                            box_card.append(titolo);
+                            box_card.append(formattedDate);
+                            box_card.append(descrizione);
+                            box_card.append(categoria);
+                            box_card.append(priorita);
+                            box_card.append(check);
+
+                            $("#ExpiredActivities").append(box_card);
+
+                        })
+
 
                     });
                 } else {
@@ -223,16 +303,13 @@
     });
 
 
-
-
-
     $("#checkActivity").on('click', function () {
 
         $.confirm({
             title: 'Nuova Attività',
             content: '' +
                 '<form action="" class="formName">' +
-                '<div class="form-group">' +
+                '<div class="form-group" style="display:flex; gap:10px; flex-direction:column ">' +
 
                     '<input type="text" placeholder="Nome" class="name form-control" required />' +
                     '<input type="text" placeholder="Descrizione" class="description form-control" required />' +
@@ -310,6 +387,17 @@
 
     })
 
+
+    //var formatDate = function(date){
+    //    let d = date;
+    //    d = [
+    //        '0' + d.getDate(),
+    //        '0' + (d.getMonth() + 1),
+    //        '' + d.getFullYear(),
+    //        '0' + d.getHours(),
+    //        '0' + d.getMinutes()
+    //    ].map(component => component.slice(-2));
+    //}
 
 
 
