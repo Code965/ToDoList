@@ -157,8 +157,8 @@ textarea {
     gap:10px;
     padding: 1%;
     border-radius:5px;
-    -moz-box-shadow: 0 0 2px #333333;
-    -webkit-box-shadow: 0 0 2px #333333;
+    -moz-box-shadow: 0 0 3px #333333;
+    -webkit-box-shadow: 0 0 3px #333333;
     box-shadow: 0 0 2px #333333;
 }
 
@@ -179,9 +179,9 @@ textarea {
 }
 
 .icon_search_input {
+    border-radius: 5px;
+    padding: 10px;
     -moz-box-shadow: 0 0 2px #333333;
-    border-radius:5px;
-    padding:10px;
     -webkit-box-shadow: 0 0 2px #333333;
     box-shadow: 0 0 2px #333333;
     margin-top: 20px;
@@ -198,9 +198,101 @@ textarea {
     margin-top: 10px;
 }
 
+/*Profile*/
 
-.info_profile{
-    background-color:beige;
-    border-radius:5px;
-    
+.boxTab{
+
+
+}
+
+
+.info_profile {
+    /*background-color: beige;*/
+    border-radius: 5px;
+    height: 410px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    -moz-box-shadow: 0 0 2px #333333;
+    -webkit-box-shadow: 0 0 2px #333333;
+    box-shadow: 0 0 2px #333333;
+}
+
+.expiredActivities {
+    width: 25%;
+    height: 205px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    -moz-box-shadow: 0 0 2px #333333;
+    -webkit-box-shadow: 0 0 2px #333333;
+    box-shadow: 0 0 2px #333333;
+
+
+    /*  background-color: aqua;*/
+}
+
+.editEmail {
+    width: 25%;
+    border-radius: 5px;
+    height: 205px;
+    /*    background-color: aqua;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    -moz-box-shadow: 0 0 2px #333333;
+    -webkit-box-shadow: 0 0 2px #333333;
+    box-shadow: 0 0 2px #333333;
+}
+
+.changePassword {
+    width: 25%;
+    border-radius: 5px;
+    /*    background-color: red;*/
+    height: 205px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    -moz-box-shadow: 0 0 2px #333333;
+    -webkit-box-shadow: 0 0 2px #333333;
+    box-shadow: 0 0 2px #333333;
+}
+/*calendario*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin-top: 80px;
+}
+
+th {
+    height: 30px;
+    text-align: center;
+    font-weight: 700;
+}
+
+td {
+    height: 100px;
+}
+
+.today {
+    background-color: gray;
+}
+
+th:nth-of-type(7),
+td:nth-of-type(7) {
+    font-weight: bold;
+}
+
+th:nth-of-type(1),
+td:nth-of-type(1) {
+    font-weight: bold;
 }
