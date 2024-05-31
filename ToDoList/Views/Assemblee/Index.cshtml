@@ -14,7 +14,7 @@
 
     <div class="intro_div col-md-12">
         <h2 class="intro flex_container align_center justify_content">
-            TODOLIFE
+            ASSEMBLEELIFE
 
             <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-list-task" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z" />
@@ -28,32 +28,20 @@
 
 
     <div class="col-md-12">
-        <h2>Oggi - @oggi</h2>
+        <h2>Assemblee</h2>
         <div class="flex_container" style="gap:10px">
             <i class="glyphicon glyphicon-search flex_container align_center justify_content icon_search_input"></i>
             <input type="text" name="name" class="inpt_search" value="" placeholder="cerca attività" />
         </div>
 
-        <div id="ActivityList" class="flex_container flex_wrap flex_gap">
-            
-
-        </div>
-
-    </div>
-
-    <div class="col-md-12">
-        <h2>Scadute</h2>
-        <div class="flex_container" style="gap:10px">
-            <i class="glyphicon glyphicon-search flex_container align_center justify_content icon_search_input"></i>
-            <input type="text" name="name" class="inpt_search" value="" placeholder="cerca attività" />
-        </div>
-
-        <div id="ExpiredActivities" class="flex_container flex_wrap flex_gap">
+        <div id="" class="flex_container flex_wrap flex_gap">
 
 
         </div>
 
     </div>
+
+  
 
 
 
@@ -63,21 +51,14 @@
         <ul class="list-nav flex_container align_center justify_content">
 
             <li id="checkActivity" class="flex_container align_center justify_content icon_colum">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-folder-plus" viewBox="0 0 16 16">
-                    <path d="m.5 3 .04.87a2 2 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.256-2.819A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2m5.672-1a1 1 0 0 1 .707.293L7.586 3H2.19q-.362.002-.683.12L1.5 2.98a1 1 0 0 1 1-.98z" />
-                    <path d="M13.5 9a.5.5 0 0 1 .5.5V11h1.5a.5.5 0 1 1 0 1H14v1.5a.5.5 0 1 1-1 0V12h-1.5a.5.5 0 0 1 0-1H13V9.5a.5.5 0 0 1 .5-.5" />
-                </svg> Attività
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-building-fill-add" viewBox="0 0 16 16">
+                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0" />
+                    <path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7.256A4.5 4.5 0 0 0 12.5 8a4.5 4.5 0 0 0-3.59 1.787A.5.5 0 0 0 9 9.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .39-.187A4.5 4.5 0 0 0 8.027 12H6.5a.5.5 0 0 0-.5.5V16H3a1 1 0 0 1-1-1zm2 1.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m3 0v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM4 5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm2.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z" />
+                </svg> Assemblee
             </li>
 
-    
-            <li>
-                <a class="flex_container align_center justify_content icon_colum" href="@Url.Action("Index", "Calendar")">
-                    <svg style="color:black;" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
-                    </svg> Calendario
-                </a>
 
-            </li>
+            
 
             <li>
                 <a class="flex_container align_center justify_content icon_colum" href="@Url.Action("Profile", "Account")">
@@ -97,8 +78,8 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="~/Scripts/jquery-confirm.js" > </script>
-<script href="~/Content/jquery-confirm.css"> </script>
+<script src="~/Scripts/jquery-confirm.js"></script>
+<script href="~/Content/jquery-confirm.css"></script>
 
 <script>
 
@@ -209,7 +190,7 @@
 
                             });
 
-                            //DATA SISTEMATA 
+                            //DATA SISTEMATA
                             var date001 = e.dateActivity;
                             // Estrai il timestamp dai millisecondi
                             var timestamp = parseInt(date001.replace('/Date(', '').replace(')/', ''), 10);
@@ -218,7 +199,7 @@
                             // Formatta la data nel formato dd/mm/yyyy
                             var formattedDate = date.toLocaleDateString('it-IT'); // "28/05/2024"
 
-                           
+
                             var check = $(":checkbox");
                             var descrizione = $('<p>', {
                                 text:  e.description,
