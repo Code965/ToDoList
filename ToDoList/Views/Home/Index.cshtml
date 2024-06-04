@@ -1,26 +1,30 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-}
-
-<div class="row justify_content ">
 
     
-    <div class="col-md-4 loginBox flex_container " style="flex-direction:column; gap:10px;">
-        
-        <form class="flex_container login " style="flex-direction:column; gap:10px; ">
+}
+
+<div class="row container">
+
+    <div class="col-md-4  flex_container " style="flex-direction:column; gap:10px;">
+
+        <form id="myForm" class="flex_container login " style="flex-direction:column; gap:10px; ">
 
             <h2 align="left">Accedi</h2>
-            <input class="inpt_login" type="text" name="name" value="" placeholder="Inserisci la tua email..." />
-            <input class="inpt_login"   type="text" name="name" value="" placeholder="Inserisci la tua password..." />
+            <input class="inpt_login" type="text" name="email" value="" placeholder="Inserisci la tua email..." />
+            <input class="inpt_login" type="text" name="password" value="" placeholder="Inserisci la tua password..." />
+
             <label>Cosa vuoi usare? Selezionalo!</label>
-            <select class="select_input">
-                <option class="option_input" value="value">TODOLIST</option>
-                <option value="value">NOTES</option>
-                <option value="value">ASSEMBELEE</option>
+            <select name="select_input"" id="select_input">
+                <option value="TODOLIST">TODOLIST</option>
+                <option value="NOTE">NOTES</option>
+                <option value="ASSEMBLEE">ASSEMBELEE</option>
             </select>
-            <button class="btn_login"> Accedi </button>
+
+            <button class="btn_login" onclick="login()"> Accedi </button>
+
             <div>
-                <input type="checkbox" name="name" value="" />
+                <input type="checkbox" name="salva_credenziali" value="true" />
                 <label>Ricorca le credenziali</label>
             </div>
 
@@ -38,21 +42,62 @@
     <div class="col-md-8 flex_container align_center justify_content">
         <img src="https://i.etsystatic.com/49462062/r/il/c36c6e/5822883311/il_fullxfull.5822883311_3wdq.jpg" width="650" height="550" alt="Alternate Text" />
         @*<h2 class=" flex_container align_center justify_content intro">TODOLIFE</h2>*@
-    
-    
+
+
     </div>
 
 
 </div>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script>
 
     $("#document").ready(function () {
-        console.log("ciao");
-    })
 
 
+        //$("#select_input").change(function () {
+        //    var valore = $('#select_input').val();
+        //    var data = $("#myForm").serialize();
+        //    console.log("data" + data);
+        //    console.log(valore);
+         
+        //})
+
+        console.log("ciao")
+
+
+    });
+
+    const login = () => {
+
+        //non passo nulla alla funzione perchè lui accede direttamente al form e prende i dati, serializzandoli
+        var data = $("#myForm").serialize();
+       
+        //var valore = $('#select_input').val();
+        //if (valore == "TODOLIST") {
+           
+        //}
+ 
+        //var check = $('input[name="salva_credenziali"]:checked').val();
+        //data.checkbox = check;
+        
+        console.log(data);
+
+        //passo il valore al controller e poi lo gestisco da li per il login
+
+        @*$.ajax({
+            type: "POST",
+            url: '@Url.Action("", "")',
+            data: data,
+            success: function (response) {
+
+                alert("success");
+                
+                //window.location.href="@Url.Action("RegistrationUser","Registration")"
+            }
+        })*@
+    }
 
 </script>
-        
+

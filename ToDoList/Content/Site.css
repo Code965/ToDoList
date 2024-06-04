@@ -50,7 +50,7 @@ textarea {
     justify-content:center;
 }
 
-.login{
+.login {
     padding: 10px;
     width: 80%;
     border-radius: 5px;
@@ -264,14 +264,7 @@ textarea {
     box-shadow: 0 0 2px #333333;
 }
 /*calendario*/
-* {
-    margin: 0;
-    padding: 0;
-}
 
-.container {
-    margin-top: 80px;
-}
 
 th {
     height: 30px;
