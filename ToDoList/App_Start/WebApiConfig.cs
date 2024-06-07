@@ -20,4 +20,3 @@ namespace ToDoList.App_Start
         }
     }
 }
-}

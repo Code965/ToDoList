@@ -11,17 +11,17 @@
         <form id="myForm" class="flex_container login " style="flex-direction:column; gap:10px; ">
 
             <h2 align="left">Accedi</h2>
-            <input class="inpt_login" type="text" name="email" value="" placeholder="Inserisci la tua email..." />
+            <input class="inpt_login" type="text" name="username" value="" placeholder="Inserisci la tua email..." />
             <input class="inpt_login" type="text" name="password" value="" placeholder="Inserisci la tua password..." />
 
-            <label>Cosa vuoi usare? Selezionalo!</label>
+            @*<label>Cosa vuoi usare? Selezionalo!</label>
             <select name="select_input"" id="select_input">
                 <option value="TODOLIST">TODOLIST</option>
                 <option value="NOTE">NOTES</option>
                 <option value="ASSEMBLEE">ASSEMBELEE</option>
-            </select>
+            </select>*@
 
-            <button class="btn_login" onclick="login()"> Accedi </button>
+            <a class="btn btn-primary" onclick="login()"> Accedi </a>
 
             <div>
                 <input type="checkbox" name="salva_credenziali" value="true" />
@@ -55,7 +55,9 @@
 
     $("#document").ready(function () {
 
-
+        var data = $("#myForm").serialize();
+        data += '&grant_type=password';
+        console.log(data)
         //$("#select_input").change(function () {
         //    var valore = $('#select_input').val();
         //    var data = $("#myForm").serialize();
@@ -64,16 +66,13 @@
          
         //})
 
-        console.log("ciao")
-
-
     });
 
-    const login = () => {
+    var login = function(){
 
         //non passo nulla alla funzione perchè lui accede direttamente al form e prende i dati, serializzandoli
         var data = $("#myForm").serialize();
-       
+        data += '&grant_type=password';
         //var valore = $('#select_input').val();
         //if (valore == "TODOLIST") {
            
@@ -81,22 +80,17 @@
  
         //var check = $('input[name="salva_credenziali"]:checked').val();
         //data.checkbox = check;
-        
-        console.log(data);
 
-        //passo il valore al controller e poi lo gestisco da li per il login
-
-        @*$.ajax({
+        $.ajax({
             type: "POST",
-            url: '@Url.Action("", "")',
+            url: 'https://localhost:44377/token',
+            contentType: 'application/x-www-form-urlencoded',
             data: data,
             success: function (response) {
 
-                alert("success");
-                
-                //window.location.href="@Url.Action("RegistrationUser","Registration")"
+                localStorage.setItem('key', response.access_token)
             }
-        })*@
+        });
     }
 
 </script>

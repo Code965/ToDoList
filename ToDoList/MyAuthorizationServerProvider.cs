@@ -18,10 +18,11 @@ namespace ToDoList
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var user = UsersManager.findUser(context.UserName, context.Password);
+            //var user = UsersManager.findUser(context.UserName, context.Password);
+            //prendo username e password dal db
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            if (context.UserName == "admin" && context.Password == user.password)
+            if (context.UserName == "admin" && context.Password == "admin") //lo inserisco qua
             {
                 identity.AddClaim(new Claim(ClaimTypes.Role, "admin"));
                 identity.AddClaim(new Claim("username", "admin"));
@@ -34,12 +35,12 @@ namespace ToDoList
                 identity.AddClaim(new Claim("username", "user"));
                 identity.AddClaim(new Claim(ClaimTypes.Name, "Suresh Sha"));
                 context.Validated(identity);
-            }
+            } 
             else
             {
                 context.SetError("invalid_grant", "Provided username and password is incorrect");
                 return;
-            }
+            } //in questo caso finisce e poi va a creare il token
         }
     }
 }
