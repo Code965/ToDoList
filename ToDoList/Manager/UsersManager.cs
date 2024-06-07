@@ -30,7 +30,7 @@ namespace ToDoList.Manager
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@email", email);
-                    cmd.Parameters.AddWithValue("@password", password); //cosi cripto la password
+                    cmd.Parameters.AddWithValue("@password", password); 
 
                     cmd.Parameters.Add("@count", SqlDbType.Int).Direction = ParameterDirection.Output;
                     dbConn.Open();

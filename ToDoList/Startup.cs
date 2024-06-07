@@ -10,9 +10,7 @@ using System.Text;
 using Microsoft.Owin.Security.OAuth;
 using System.Web.Http;
 using System.Threading.Tasks;
-
-
-
+using ToDoList.App_Start;
 
 [assembly: OwinStartup(typeof(ToDoList.Startup))]
 
@@ -24,6 +22,7 @@ namespace ToDoList
         {
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             var myProvider = new MyAuthorizationServerProvider();
+
             OAuthAuthorizationServerOptions options = new OAuthAuthorizationServerOptions
             {
                 AllowInsecureHttp = true,
@@ -31,7 +30,9 @@ namespace ToDoList
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 Provider = myProvider
             };
+
             app.UseOAuthAuthorizationServer(options);
+
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
 

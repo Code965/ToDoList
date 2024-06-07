@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using ToDoList.Manager;
 
 namespace ToDoList
 {
@@ -17,15 +18,17 @@ namespace ToDoList
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
+            var user = UsersManager.findUser(context.UserName, context.Password);
+
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            if (context.UserName == "admin" && context.Password == "admin")
+            if (context.UserName == "admin" && context.Password == user.password)
             {
                 identity.AddClaim(new Claim(ClaimTypes.Role, "admin"));
                 identity.AddClaim(new Claim("username", "admin"));
-                identity.AddClaim(new Claim(ClaimTypes.Name, "Sourav Mondal"));
+                identity.AddClaim(new Claim(ClaimTypes.Name, "Domenico Giannone"));
                 context.Validated(identity);
             }
-            else if (context.UserName == "user" && context.Password == "user")
+            else if (context.UserName == "user" && context.Password == "user") 
             {
                 identity.AddClaim(new Claim(ClaimTypes.Role, "user"));
                 identity.AddClaim(new Claim("username", "user"));

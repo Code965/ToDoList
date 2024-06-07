@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using ToDoList.Models;
 using ToDoList.ViewModels;
 using ToDoList.Manager;
+using System.Security.Claims;
 
 namespace ToDoList.Controllers
 {
@@ -53,18 +54,48 @@ namespace ToDoList.Controllers
                 {
                     int ReturnCode = 0;
                     UsersManager.insertUser(utenteObj, out ReturnCode);
-
                 }
                 catch (Exception ex)
                 {
                     ModelState.AddModelError("CustomError", "Errore durante la creazione dell'utente ");
                 }
             }
-
             return Json(new { ok = true, val = utente }, JsonRequestBehavior.AllowGet); //torna il model
         }
 
+
+        //quando faccio un controller per qualcosa e ho bisogno che prima l'utente venga utenticato
+        //faccio partire una chiamata a questo, se mi ritorna ok allora procedo. Quindi prima di ogni cosa
+        //biosgna passare da questo metodo, fornendogli il token
+        //PER OGNI TIPO DI UTENTE REGISTRATO
+        //mi torna il nome di chi al momento si è loggato
+        [Authorize]
+        [HttpGet]
+        [Route("api/Account/authorizeUser")]
+        public JsonResult authenticate() //mi serve per verificare se l'identità di un utente è ok
+        {
+            var identity = (ClaimsIdentity)User.Identity;
+            return Json(new { msg = "ok", nome = identity.Name });
+        }
+
+
+        //SOLO PER GLI AMMINISTRATORI
         
+        [Authorize(Roles = "admin")]
+        [HttpGet]
+        [Route("api/Account/authorizeAdmin")]
+        public JsonResult GetForAdmin()
+        {
+            var identity = (ClaimsIdentity)User.Identity; //prende l'identità dell'admin
+
+            //prende il ruolo dell'admin e verifica che sia presente - store procedure
+            var roles = identity.Claims
+                        .Where(c => c.Type == ClaimTypes.Role)
+                        .Select(c => c.Value);
+
+            return Json(new { nome = identity.Name, ruolo = string.Join(",", roles.ToList())});
+        }
+
         public ActionResult ForgotPassword()
         {
             return View();
