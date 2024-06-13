@@ -61,6 +61,7 @@ namespace ToDoList.Controllers
         [HttpGet]
         public async Task<JsonResult> ExpiredActivities(DateTime today) //arriva il parametro da frontend
         {
+            
             var retval = ActivityManager.findExpiredActivities(today);
 
             

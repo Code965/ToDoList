@@ -14,12 +14,12 @@
             <input class="inpt_login" type="text" name="username" value="" placeholder="Inserisci la tua email..." />
             <input class="inpt_login" type="text" name="password" value="" placeholder="Inserisci la tua password..." />
 
-            @*<label>Cosa vuoi usare? Selezionalo!</label>
+            <label>Cosa vuoi usare? Selezionalo!</label>
             <select name="select_input"" id="select_input">
                 <option value="TODOLIST">TODOLIST</option>
                 <option value="NOTE">NOTES</option>
                 <option value="ASSEMBLEE">ASSEMBELEE</option>
-            </select>*@
+            </select>
 
             <a class="btn btn-primary" onclick="login()"> Accedi </a>
 
@@ -73,24 +73,68 @@
         //non passo nulla alla funzione perchè lui accede direttamente al form e prende i dati, serializzandoli
         var data = $("#myForm").serialize();
         data += '&grant_type=password';
-        //var valore = $('#select_input').val();
-        //if (valore == "TODOLIST") {
-           
-        //}
- 
+
+        var valore = $('#select_input').val();
+        console.log(valore);
         //var check = $('input[name="salva_credenziali"]:checked').val();
         //data.checkbox = check;
 
-        $.ajax({
-            type: "POST",
-            url: 'https://localhost:44377/token',
-            contentType: 'application/x-www-form-urlencoded',
-            data: data,
-            success: function (response) {
+        if (valore == "TODOLIST") {
+            $.ajax({
+                type: "POST",
+                url: 'https://localhost:44377/token',
+                contentType: 'application/x-www-form-urlencoded',
+                data: data,
+                success: function (response) {
+                    if (response) {
+                        alert("Benveuto")
+                        localStorage.setItem('key', response.access_token);
+                        window.location.replace("https://localhost:44377/Activity/index");
 
-                localStorage.setItem('key', response.access_token)
-            }
-        });
+                    } else {
+                        alert("Errore, credenziali errate");
+                    }
+                }
+            });
+        } else if (valore == "NOTE") {
+            debugger
+            $.ajax({
+                type: "POST",
+                url: 'https://localhost:44377/token',
+                contentType: 'application/x-www-form-urlencoded',
+                data: data,
+                success: function (response) {
+                    if (response) {
+                        alert("Benveuto" + response)
+                        localStorage.setItem('key', response.access_token);
+                        window.location.replace("https://localhost:44377/Notes/index");
+
+                    } else {
+                        alert("Errore, credenziali errate");
+                    }
+                }
+            });
+        } else {
+
+            $.ajax({
+                type: "POST",
+                url: 'https://localhost:44377/token',
+                contentType: 'application/x-www-form-urlencoded',
+                data: data,
+                success: function (response) {
+                    if (response) {
+                        alert("Benveuto" + response)
+                        localStorage.setItem('key', response.access_token);
+                        window.location.replace("https://localhost:44377/Assemblee/index");
+
+                    } else {
+                        alert("Errore, credenziali errate");
+                    }
+                }
+            });
+
+        }
+ 
     }
 
 </script>
