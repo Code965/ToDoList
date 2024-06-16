@@ -128,33 +128,45 @@
                             //creo gli oggetti
 
                             var box_card = $('<div><div/>', {
-
+                                style:'width:100%; gap:100px'
                             });
 
                             var titolo = $('<p>', {
                                 text:  e.name,
                                 target: '_blank',
-                                style: 'color:black',
+                                style: 'width:100%',
                             });
 
 
                             var descrizione = $('<p>', {
                                 text: e.description ,
                                 target: '_blank',
-                                style: 'display:flex',
+                                style: 'width:100%',
                             });
 
                             var categoria = $('<p>', {
                                 text: e.category,
                                 target: '_blank',
-                                style: 'color:black',
+                                style: 'width:100%',
                             });
 
                             var priorita = $('<p>', {
                                 text: e.priority,
                                 target: '_blank',
-                                style: 'color:black',
+                                style: 'width:100%',
                             });
+
+
+                            var modifica = $('<a>', {
+                                target: '_blank',
+                               class: 'btn btn-primary glyphicon glyphicon-pencil',
+                            });
+
+                            var elimina = $('<a>', {
+                                target: '_blank',
+                                class: 'btn btn-primary glyphicon glyphicon-trash',
+                            });
+                         
 
                             var date001 = e.dateActivity;
                             // Estrai il timestamp dai millisecondi
@@ -171,6 +183,8 @@
                             box_card.append(descrizione);
                             box_card.append(categoria);
                             box_card.append(priorita);
+                            box_card.append(modifica);
+                            box_card.append(elimina);
 
                             $("#ActivityList").append(box_card);
 
@@ -241,13 +255,34 @@
 
                             });
 
+                            var modifica = $('<a>', {
+                              
+                                target: '_blank',
+                                class: 'btn btn-primary glyphicon glyphicon-pencil',
+                            });
+
+                            var elimina = $('<a>', {
+                                
+                                target: '_blank',
+                                class: 'btn btn-primary glyphicon glyphicon-trash',
+                            });
+
+                            var icon_elimina = $('<i>', {
+                                target: '_blank',
+                                class: 'glyphicon glyphicon-trash',
+                            });
+
+                            elimina.appendTo(icon_elimina)
+
                             box_card.addClass("card")
                             box_card.append(titolo);
                             box_card.append(formattedDate);
                             box_card.append(descrizione);
                             box_card.append(categoria);
                             box_card.append(priorita);
-                            box_card.append(check);
+                         
+                            box_card.append(modifica);
+                            box_card.append(elimina);
 
                             $("#ExpiredActivities").append(box_card);
 
