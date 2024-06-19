@@ -19,6 +19,7 @@ namespace ToDoList.Controllers
         }
 
         [HttpPost]
+        //inserisce una nuova attività
         public JsonResult newActivity( string name, string description, DateTime date, int priority, int category)
         {
                 //CREO UN OGGETTO UTENTE a cui assegno i valori del ViewModel
@@ -48,6 +49,7 @@ namespace ToDoList.Controllers
 
 
         [HttpGet]
+        //trova tutte le attività con la data corrente
         public async Task<JsonResult> ActivityList(DateTime today) //arriva il parametro da frontend
         {
             var retval = ActivityManager.findActivity(today);
@@ -59,6 +61,7 @@ namespace ToDoList.Controllers
         }
 
         [HttpGet]
+        //Trova tutte le attività scadute
         public async Task<JsonResult> ExpiredActivities(DateTime today) //arriva il parametro da frontend
         {
             
@@ -72,37 +75,36 @@ namespace ToDoList.Controllers
         }
 
 
-          [HttpPost, ValidateAntiForgeryToken]
-        public async Task<JsonResult>  EditActivity(int Id, string Description, DateTime data, int priority, int category)
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<JsonResult> EditActivity(int activity_id, string name, string description, DateTime dateActivity, int priority, int category)
         {
-
-           
-            try
-            {
-                .UpdateLocations(Id, Description, data,priority,category, out ReturnCode);
-            }
-            catch (Exception ex)
-            {
-               
-            }
-            return Json(new { success="modificato"}, JsonRequestBehavior.AllowGet);
-        }
-
-
-        public async Task<JsonResult> RemoveActivity(int id)
-        {
-         
-           
+            bool retval = false;
             try
             {
                 int ReturnCode = 0;
-                .DeleteActivity(id); 
+               retval= ActivityManager.UpdateActivity(activity_id,name,description,dateActivity,priority,category,out ReturnCode);
             }
             catch (Exception ex)
             {
-               
+                ModelState.AddModelError("CustomError", "Errore durante la modifica dell'attività ");
             }
-            return await Task.FromResult(Json(response));
+
+            return Json(new { success = "modificato" , boleano = retval}, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> RemoveActivity(int id)
+        {
+            try
+            {
+                int ReturnCode = 0;
+                ActivityManager.DeleteActivity(id, out ReturnCode); 
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("CustomError", "Errore durante l'eliminazione dell'attività ");
+            }
+            return await Task.FromResult(Json(new { success = "eliminato"}));
         }
 
 

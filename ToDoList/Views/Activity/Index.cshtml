@@ -112,7 +112,6 @@
         var hh = today.getHours();
         var mm = today.getMinutes();
         var ss = today.getSeconds();
-
         var currentDate = year + '-' + month + '-' + day;
 
         $.ajax({
@@ -129,7 +128,7 @@
                             var box_card = $('<div><div/>', {
                                 style: 'width:100%; gap:100px'
                             });
-
+                            var id = e.activity_id;
                             var date001 = e.dateActivity;
                             // Estrai il timestamp dai millisecondi
                             var timestamp = parseInt(date001.replace('/Date(', '').replace(')/', ''), 10);
@@ -141,32 +140,38 @@
                             var titolo = $('<p>', {
                                 text: e.name,
                                 target: '_blank',
-                                style: 'width:100%',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
                             });
-
 
                             var descrizione = $('<p>', {
                                 text: e.description,
                                 target: '_blank',
-                                style: 'width:100%',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var dataUltimate = $('<p>', {
+                                text: formattedDate,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
                             });
 
                             var categoria = $('<p>', {
                                 text: e.category,
                                 target: '_blank',
-                                style: 'width:100%',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
                             });
 
                             var priorita = $('<p>', {
                                 text: e.priority,
                                 target: '_blank',
-                                style: 'width:100%',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
                             });
 
                             var modifica = $('<a>', {
                                 target: '_blank',
                                 class: 'btn btn-primary glyphicon glyphicon-pencil ',
                                 id: 'modifica',
+                                style: ' display:flex;align-items:center; justify-content:center; margin-top:10px',
                             }).on('click', function () {
                                         $.confirm({
                                             title: 'Modifica Attività',
@@ -212,7 +217,7 @@
                                                         var data = this.$content.find('.date').val();
                                                         var priority =$('#priority').val();
                                                         var category = $('#category').val();
-
+                                                        var newDate = data.slice(0, 16);
                                                         if (!name) {
                                                             $.alert('nome non inserito');
                                                             return false;
@@ -232,10 +237,9 @@
 
                                                         $.ajax({
                                                         type: "POST",
-                                                            url: '@Url.Action("", "Activity")?name=' + name + '&description=' + description + '&date=' + data + '&priority=' + priority + '&category=' + category ,
+                                                            url: '@Url.Action("EditActivity", "Activity")?activity_id=' + id + '&name=' + name + '&description=' + description + '&date=' + newDate + '&priority=' + priority + '&category=' + category ,
                                                         success: function (response) {
 
-                                                          /*  $.alert('Attività aggiunta');*/
                                                             history.go(0)
 
                                                             }
@@ -256,6 +260,8 @@
                                 target: '_blank',
                                 class: 'btn btn-primary glyphicon glyphicon-trash ',
                                 id: 'elimina',
+                                style: ' display:flex;align-items:center; justify-content:center; margin-top:10px',
+
                             }).on('click', function () {
 
                                   $.confirm({
@@ -269,36 +275,15 @@
                                                     btnClass: 'btn-blue',
                                                     action: function () {
 
-                                                        var name = this.$content.find('.name').val();
-                                                        var description = this.$content.find('.description').val();
-                                                        var data = this.$content.find('.date').val();
-                                                        var priority =$('#priority').val();
-                                                        var category = $('#category').val();
 
-                                                        if (!name) {
-                                                            $.alert('nome non inserito');
-                                                            return false;
-                                                        } else if (!description) {
-                                                            $.alert('descrizione non inserita');
-                                                            return false;
-                                                        } else if (!data) {
-                                                            $.alert('data non inserita');
-                                                            return false;
-                                                        } else if (!priority) {
-                                                            $.alert('priorità non inserita');
-                                                            return false;
-                                                        } else if (!category) {
-                                                            $.alert('categoria non inserita');
-                                                            return false;
-                                                        }
 
                                                         $.ajax({
                                                         type: "POST",
-                                                            url: '@Url.Action("", "Activity")?name=' + name + '&description=' + description + '&date=' + data + '&priority=' + priority + '&category=' + category ,
-                                                        success: function (response) {
+                                                            url: '@Url.Action("RemoveActivity", "Activity")?id=' + id ,
+                                                            success: function (response) {
 
-                                                          /*  $.alert('Attività aggiunta');*/
-                                                            history.go(0)
+
+                                                                history.go(0)
 
                                                             }
                                                         })
@@ -324,13 +309,13 @@
                             });
 
 
-                       
+
 
                             //aggiungo
                             box_card.addClass("card");
                             box_card.append(checkbox);
                             box_card.append(titolo);
-                            box_card.append(formattedDate);
+                            box_card.append(dataUltimate);
                             box_card.append(descrizione);
                             box_card.append(categoria);
                             box_card.append(priorita);

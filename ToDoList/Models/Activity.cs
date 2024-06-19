@@ -7,6 +7,7 @@ namespace ToDoList.Models
 {
     public class Activity
     {
+        public int activity_id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
         public DateTime dateActivity { get; set; }

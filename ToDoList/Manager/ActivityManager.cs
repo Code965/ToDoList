@@ -96,18 +96,21 @@ namespace ToDoList.Manager
         }
 
 
-        public static bool UpdateActivity(int Id, string Description, int MaxPhysicalAccessNumber, out int ReturnCode)
+        public static bool UpdateActivity(int activity_id, string name, string description, DateTime dateActivity, int priority, int category, out int ReturnCode)
         {
             bool retval = false;
             using (SqlConnection dbconn = new SqlConnection(connString))
             {
                 dbconn.Open();
-                using (SqlCommand cmd = new SqlCommand("", dbconn))
+                using (SqlCommand cmd = new SqlCommand("[dbo].[usp_UpdateActivity]", dbconn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@ActivityId", Id);
-                    cmd.Parameters.AddWithValue("@Description", Description);
-                    cmd.Parameters.AddWithValue("@", MaxPhysicalAccessNumber);
+                    cmd.Parameters.AddWithValue("@activity_id", activity_id);
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@description", description);
+                    cmd.Parameters.AddWithValue("@date", dateActivity);
+                    cmd.Parameters.AddWithValue("@priority", priority);
+                    cmd.Parameters.AddWithValue("@category", category);
                     cmd.Parameters.Add("@ReturnCode", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
 
                     int retCode = 0;
@@ -128,7 +131,7 @@ namespace ToDoList.Manager
             using (SqlConnection dbConn = new SqlConnection(connString))
             {
                 dbConn.Open();
-                using (SqlCommand cmd = new SqlCommand("", dbConn))
+                using (SqlCommand cmd = new SqlCommand("[dbo].[usp_RemoveActivity]", dbConn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ActivityId", activityId);
