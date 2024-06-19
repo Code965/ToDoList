@@ -72,6 +72,40 @@ namespace ToDoList.Controllers
         }
 
 
+          [HttpPost, ValidateAntiForgeryToken]
+        public async Task<JsonResult>  EditActivity(int Id, string Description, DateTime data, int priority, int category)
+        {
+
+           
+            try
+            {
+                .UpdateLocations(Id, Description, data,priority,category, out ReturnCode);
+            }
+            catch (Exception ex)
+            {
+               
+            }
+            return Json(new { success="modificato"}, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public async Task<JsonResult> RemoveActivity(int id)
+        {
+         
+           
+            try
+            {
+                int ReturnCode = 0;
+                .DeleteActivity(id); 
+            }
+            catch (Exception ex)
+            {
+               
+            }
+            return await Task.FromResult(Json(response));
+        }
+
+
 
 
     }

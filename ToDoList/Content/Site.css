@@ -24,6 +24,10 @@ textarea {
     max-width: none;
 }
 
+.link{
+    color:black;
+}
+
 .flex_container{
     display:flex;
 }
@@ -156,13 +160,15 @@ textarea {
 .card{
     width: 100%;
     gap:15px;
-    padding: 1%;
-    border-radius:5px;
     display:flex;
 }
 
 
-
+.cardExpiredActivities {
+    width: 100%;
+    gap:30px;
+    display: flex;
+}
 
 .inpt_search{
     padding: 5px;
@@ -197,8 +203,9 @@ textarea {
 
 #ExpiredActivities {
     margin-top: 10px;
-    display:flex;
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 /*Profile*/
@@ -223,7 +230,7 @@ textarea {
     box-shadow: 0 0 2px #333333;
 }
 
-.expiredActivities {
+/*.expiredActivities {
     width: 25%;
     height: 205px;
     border-radius: 5px;
@@ -233,11 +240,11 @@ textarea {
     flex-direction: column;
     -moz-box-shadow: 0 0 2px #333333;
     -webkit-box-shadow: 0 0 2px #333333;
-    box-shadow: 0 0 2px #333333;
+    box-shadow: 0 0 2px #333333;*/
 
 
     /*  background-color: aqua;*/
-}
+/*}*/
 
 .editEmail {
     width: 25%;

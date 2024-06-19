@@ -96,12 +96,51 @@ namespace ToDoList.Manager
         }
 
 
+        public static bool UpdateActivity(int Id, string Description, int MaxPhysicalAccessNumber, out int ReturnCode)
+        {
+            bool retval = false;
+            using (SqlConnection dbconn = new SqlConnection(connString))
+            {
+                dbconn.Open();
+                using (SqlCommand cmd = new SqlCommand("", dbconn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ActivityId", Id);
+                    cmd.Parameters.AddWithValue("@Description", Description);
+                    cmd.Parameters.AddWithValue("@", MaxPhysicalAccessNumber);
+                    cmd.Parameters.Add("@ReturnCode", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
 
+                    int retCode = 0;
+                    cmd.ExecuteNonQuery();
+                    retCode = (int)cmd.Parameters["@ReturnCode"].Value; //PRENDE IL VALORE DI OUTPUT
+                    retval = retCode == 0; //PRENDE IL VALORE DI retCode
+                    ReturnCode = retCode;
+                }
 
+            }
 
+            return retval;
+        }
 
-
-
+        public static void DeleteActivity(int activityId, out int ReturnCode)
+        {
+            bool retval = false;
+            using (SqlConnection dbConn = new SqlConnection(connString))
+            {
+                dbConn.Open();
+                using (SqlCommand cmd = new SqlCommand("", dbConn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ActivityId", activityId);
+                    cmd.Parameters.Add("@ReturnCode", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+                    int retCode = 0;
+                    cmd.ExecuteNonQuery();
+                    retCode = (int)cmd.Parameters["@ReturnCode"].Value; //PRENDE IL VALORE DI OUTPUT
+                    retval = retCode == 0; //PRENDE IL VALORE DI retCode
+                    ReturnCode = retCode;
+                }
+            }
+        }
 
 
 
