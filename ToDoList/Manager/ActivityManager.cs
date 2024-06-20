@@ -147,5 +147,58 @@ namespace ToDoList.Manager
 
 
 
+        public static List<Activity> searchActivity(string filter) //mi deve trovare tutte le attività filtrate con la data di oggi
+        {
+        
+
+            List<Activity> retval = new List<Activity>();
+            using (SqlConnection dbConn = new SqlConnection(connString))
+            {
+             
+                dbConn.Open();
+                using (SqlCommand cmd = new SqlCommand("[dbo].[usp_filterActivity]", dbConn)) //eseguo la store procedure
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@string_filter", filter);
+                    using (SqlDataReader dr = cmd.ExecuteReader()) 
+                    {
+                        retval=dr.BindToList<Activity>();
+                    }
+
+                    return retval; //mi faccio tornare 
+                }
+            }
+
+           
+        }
+
+
+
+        //public static Tuple<List<Location>, int> GetLocationsList()
+        //{
+        //    int count = 0;
+        //    Tuple<List<Location>, int> retval = new Tuple<List<Location>, int>(new List<Location>(), 0);
+        //    List<Location> locationList = new List<Location>();
+
+        //    using (SqlConnection dbConn = new SqlConnection(connString))
+        //    {
+        //        using (SqlCommand cmd = new SqlCommand("pre.usp_GetLocationsList", dbConn))
+        //        {
+        //            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //            cmd.Parameters.Add("@count", SqlDbType.Int).Direction = ParameterDirection.Output;
+        //            dbConn.Open();
+        //            using (SqlDataReader dr = cmd.ExecuteReader())
+        //            {
+        //                locationList = dr.BindToList<Location>();
+        //            }
+        //            count = Convert.ToInt32(cmd.Parameters["@count"].Value);
+        //            retval = new Tuple<List<Location>, int>(locationList, count);
+        //        }
+        //    }
+        //    return retval;
+        //}
+
+
     }
 }

@@ -232,7 +232,7 @@ textarea {
     box-shadow: 0 0 2px #333333;
 }
 
-/*.expiredActivities {
+.expiredActivities {
     width: 25%;
     height: 205px;
     border-radius: 5px;
@@ -243,12 +243,7 @@ textarea {
     -moz-box-shadow: 0 0 2px #333333;
     -webkit-box-shadow: 0 0 2px #333333;
     box-shadow: 0 0 2px #333333;
-
-
-      background-color: aqua;
 }
-*/
-
 
 .editEmail {
     width: 25%;

@@ -30,14 +30,19 @@
     <div class="col-md-12">
         <h2>Oggi - @oggi</h2>
         <div class="flex_container" style="gap:10px">
-            <i class="glyphicon glyphicon-search flex_container align_center justify_content icon_search_input"></i>
-            <input type="text" name="name" class="inpt_search" value="" placeholder="cerca attività" />
+            <i id="search_filter" class="glyphicon glyphicon-search flex_container align_center justify_content icon_search_input"></i>
+            <input id="value_filter" type="text" name="name" class="inpt_search" value="" placeholder="cerca attività" />
         </div>
 
         <div id="ActivityList" class="flex_container flex_wrap flex_gap">
-            
+
 
         </div>
+
+       
+
+
+
 
     </div>
 
@@ -118,16 +123,20 @@
             type: "GET",
             url: '@Url.Action("ActivityList", "Activity")?today=' + currentDate ,
             success: function (response) {
+
                 if (response.length != 0) {
 
                     $.each(response, function (i, elemento) {
 
+
+                        console.log(elemento)
                         $.each(elemento, function (j, e) {
 
                             //creo gli oggetti
                             var box_card = $('<div><div/>', {
                                 style: 'width:100%; gap:100px'
                             });
+
                             var id = e.activity_id;
                             var date001 = e.dateActivity;
                             // Estrai il timestamp dai millisecondi
@@ -179,9 +188,9 @@
                                                 '<form action="" class="formName">' +
                                                 '<div class="form-group" style="display:flex; gap:10px; flex-direction:column ">' +
 
-                                                    '<input type="text" placeholder="Nome" class="name form-control" required  value='+ e.name + '/>' +
-                                                    '<input type="text" placeholder="Descrizione" class="description form-control" required value='+ e.description + '/>' +
-                                                    '<input type="datetime-local" class="date form-control" required value=' + e.date + '/>' +
+                                                    '<input type="text" placeholder="Nome" class="name form-control" required  value="'+ e.name + '"/>' +
+                                                    '<input type="text" placeholder="Descrizione" class="description form-control" required value="' + e.description + '"/>' +
+                                                    '<input type="datetime-local" class="date form-control" required/>' +
 
                                                     '<div class="flex_container icon_colum">' +
                                                         '<div class="flex_container gap_block  " >' +
@@ -217,7 +226,10 @@
                                                         var data = this.$content.find('.date').val();
                                                         var priority =$('#priority').val();
                                                         var category = $('#category').val();
-                                                        var newDate = data.slice(0, 16);
+
+                                                        console.log(name,description,data,priority,category)
+
+
                                                         if (!name) {
                                                             $.alert('nome non inserito');
                                                             return false;
@@ -237,10 +249,10 @@
 
                                                         $.ajax({
                                                         type: "POST",
-                                                            url: '@Url.Action("EditActivity", "Activity")?activity_id=' + id + '&name=' + name + '&description=' + description + '&date=' + newDate + '&priority=' + priority + '&category=' + category ,
-                                                        success: function (response) {
+                                                            url: '@Url.Action("EditActivity", "Activity")?activity_id=' + id + '&name=' + name + '&description=' + description + '&dateActivity=' + data + '&priority=' + priority + '&category=' + category ,
+                                                            success: function (response) {
 
-                                                            history.go(0)
+                                                                history.go(0)
 
                                                             }
                                                         })
@@ -305,28 +317,21 @@
                                 type: 'checkbox',
                                 target: '_blank',
                                 style: '',
-
                             });
-
-
-
 
                             //aggiungo
                             box_card.addClass("card");
                             box_card.append(checkbox);
                             box_card.append(titolo);
-                            box_card.append(dataUltimate);
                             box_card.append(descrizione);
+                            box_card.append(dataUltimate);
                             box_card.append(categoria);
                             box_card.append(priorita);
                             box_card.append(modifica);
                             box_card.append(elimina);
 
                             $("#ActivityList").append(box_card);
-                            //$("#ActivityList").load(box_card);
-
-
-
+                            
                         });
                     });
                 } else {
@@ -336,18 +341,19 @@
         });
 
 
-
+        //ATTIVITà SCADUTE
 
         $.ajax({
             type: "GET",
             url: '@Url.Action("ExpiredActivities", "Activity")?today=' + currentDate ,
             success: function (response) {
+               
                 if (response.length != 0) {
-
+                    
                     $.each(response, function (i, elemento) {
-
+                        
                         $.each(elemento, function (j, e) {
-
+                            
                             var box_card = $('<div><div/>', {
 
                             });
@@ -507,10 +513,10 @@
                         $.ajax({
                         type: "POST",
                             url: '@Url.Action("newActivity", "Activity")?name=' + name + '&description=' + description + '&date=' + data + '&priority=' + priority + '&category=' + category ,
-                        success: function (response) {
+                            success: function (response) {
 
-                          /*  $.alert('Attività aggiunta');*/
-                            history.go(0)
+                            
+                                history.go(0)
 
                             }
                         })
@@ -525,6 +531,21 @@
 
     })
 
+
+
+    $('#search_filter').on('click', function () {
+
+        var filtro = $('#value_filter').val();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("filterActivity", "Activity")?filter=' + filtro ,
+            success: function (response) {
+
+                console.log(response);
+            }
+        })
+    })
 
 
 

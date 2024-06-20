@@ -75,14 +75,14 @@ namespace ToDoList.Controllers
         }
 
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
         public async Task<JsonResult> EditActivity(int activity_id, string name, string description, DateTime dateActivity, int priority, int category)
         {
             bool retval = false;
             try
             {
                 int ReturnCode = 0;
-               retval= ActivityManager.UpdateActivity(activity_id,name,description,dateActivity,priority,category,out ReturnCode);
+               retval = ActivityManager.UpdateActivity(activity_id,name,description,dateActivity,priority,category,out ReturnCode);
             }
             catch (Exception ex)
             {
@@ -107,6 +107,41 @@ namespace ToDoList.Controllers
             return await Task.FromResult(Json(new { success = "eliminato"}));
         }
 
+
+
+        //[HttpPost]
+        //public JsonResult filterActivity(string filter)
+        //{
+
+        //    try
+        //    {
+        //        int ReturnCode = 0;
+        //        var retval = ActivityManager.searchActivity(filter);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ModelState.AddModelError("CustomError", "Errore durante l'eliminazione dell'attività ");
+        //    }
+
+
+        //    return Json(retval, 
+        //        JsonRequestBehavior.AllowGet);
+        //}
+
+        [HttpPost]
+        public async Task<JsonResult> filterActivity(string filter) //arriva il parametro da frontend
+        {
+
+            int ReturnCode = 0;
+            var retval = ActivityManager.searchActivity(filter);
+
+            ViewBag.lista = retval;
+
+            return Json(new
+            {
+                retval
+            }, JsonRequestBehavior.AllowGet);
+        }
 
 
 
