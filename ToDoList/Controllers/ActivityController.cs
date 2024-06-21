@@ -135,7 +135,6 @@ namespace ToDoList.Controllers
             int ReturnCode = 0;
             var retval = ActivityManager.searchActivity(filter);
 
-            ViewBag.lista = retval;
 
             return Json(new
             {
@@ -143,6 +142,20 @@ namespace ToDoList.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+
+        [HttpPost]
+        public async Task<JsonResult> filterActivity_ExpiredActivities(string filter) //arriva il parametro da frontend
+        {
+
+            int ReturnCode = 0;
+            var retval = ActivityManager.searchActivity_ExpiredActivities(filter);
+
+
+            return Json(new
+            {
+                retval
+            }, JsonRequestBehavior.AllowGet);
+        }
 
 
     }

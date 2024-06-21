@@ -30,7 +30,8 @@ BEGIN TRY
 	
 	select *
 	from dbo.Activity
-	where dateActivity < @dataToday;
+	where dateActivity < @dataToday
+	order by activity_id ASC;
 
 	COMMIT TRAN
 	

@@ -23,7 +23,8 @@ BEGIN TRY
 	--Altrimenti inserisco
 	select *
 	from dbo.Activity
-	where CONVERT(DATE, dateActivity) = CONVERT(DATE,@today);
+	where CONVERT(DATE, dateActivity) = CONVERT(DATE,@today)
+	ORDER BY activity_id ASC;
 
 	COMMIT TRAN
 	

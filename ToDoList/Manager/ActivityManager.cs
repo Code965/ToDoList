@@ -175,6 +175,36 @@ namespace ToDoList.Manager
 
 
 
+
+        public static List<Activity> searchActivity_ExpiredActivities(string filter) //mi deve trovare tutte le attività filtrate con la data di oggi
+        {
+
+
+            List<Activity> retval = new List<Activity>();
+            using (SqlConnection dbConn = new SqlConnection(connString))
+            {
+
+                dbConn.Open();
+                using (SqlCommand cmd = new SqlCommand("[dbo].[usp_filterActivity_ExpiredActivities]", dbConn)) //eseguo la store procedure
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@string_filter", filter);
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        retval = dr.BindToList<Activity>();
+                    }
+
+                    return retval; //mi faccio tornare 
+                }
+            }
+
+
+        }
+
+
+
+
         //public static Tuple<List<Location>, int> GetLocationsList()
         //{
         //    int count = 0;
