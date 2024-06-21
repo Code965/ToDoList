@@ -7,6 +7,7 @@ namespace ToDoList.ViewModels
 {
     public class NotesViewModels
     {
+        public int Notes_id { get; set; }
         public string title { get; set; }
         public DateTime DateNotes { get; set; }
         public string DescriptionNotes { get; set; }

@@ -27,7 +27,7 @@
     </div>
 
 
-   
+
 
     <div class="col-md-12">
         <h2>Note</h2>
@@ -37,29 +37,28 @@
 
         </div>
 
+        <div id="Notes" class="flex_container flex_wrap flex_gap">
+
+
+        </div>
 
     </div>
 
- 
+
 
 
     <nav class="navbar flex_container align_center justify_content col-md-12">
 
         <ul class="list-nav flex_container align_center justify_content">
 
-         
 
-            <li class="flex_container align_center justify_content icon_colum">
+
+            <li id="newNotes" class="flex_container align_center justify_content icon_colum">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-file-plus" viewBox="0 0 16 16">
                     <path d="M8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5z" />
                     <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1" />
                 </svg> Note
             </li>
-
-         
-       
-
-        
 
             <li>
                 <a class="flex_container align_center justify_content icon_colum" href="@Url.Action("Profile", "Account")">
@@ -89,7 +88,7 @@
 
         var today = new Date();
         var day = today.getDate();
-        var month = (today.getMonth() + 1).toString().padStart(2,'0');
+        var month = (today.getMonth() + 1).toString().padStart(2, '0');
         var year = today.getFullYear();
         var hh = today.getHours();
         var mm = today.getMinutes();
@@ -99,29 +98,31 @@
 
         $.ajax({
             type: "GET",
-            url: '@Url.Action("ActivityList", "Activity")?today=' + currentDate ,
+            url: '@Url.Action("NotesList", "Notes")',
             success: function (response) {
                 if (response.length != 0) {
 
                     $.each(response, function (i, elemento) {
 
                         $.each(elemento, function (j, e) {
-
+                            console.log(e)
                             //creo gli oggetti
 
                             var box_card = $('<div><div/>', {
-
+                                style: 'width:100%; heigth:500px',
                             });
 
+                            var id = e.Notes_id;
+
                             var titolo = $('<p>', {
-                                text:  e.name,
+                                text: e.title,
                                 target: '_blank',
                                 style: 'color:black',
                             });
 
 
                             var descrizione = $('<p>', {
-                                text: e.description ,
+                                text: e.DescriptionNotes,
                                 target: '_blank',
                                 style: 'display:flex',
                             });
@@ -132,13 +133,7 @@
                                 style: 'color:black',
                             });
 
-                            var priorita = $('<p>', {
-                                text: e.priority,
-                                target: '_blank',
-                                style: 'color:black',
-                            });
-
-                            var date001 = e.dateActivity;
+                            var date001 = e.DateNotes;
                             // Estrai il timestamp dai millisecondi
                             var timestamp = parseInt(date001.replace('/Date(', '').replace(')/', ''), 10);
                             // Crea un oggetto Date
@@ -147,91 +142,13 @@
                             var formattedDate = date.toLocaleDateString('it-IT');
 
                             //aggiungo
-                            box_card.addClass("card")
+                            box_card.addClass("cardNotes")
                             box_card.append(titolo);
                             box_card.append(formattedDate);
                             box_card.append(descrizione);
                             box_card.append(categoria);
-                            box_card.append(priorita);
 
-                            $("#ActivityList").append(box_card);
-
-                        })
-
-
-                    });
-                } else {
-                    console.log("vuoto");
-                }
-            }
-        });
-
-
-
-
-        $.ajax({
-            type: "GET",
-            url: '@Url.Action("ExpiredActivities", "Activity")?today=' + currentDate ,
-            success: function (response) {
-                if (response.length != 0) {
-
-                    $.each(response, function (i, elemento) {
-
-                        $.each(elemento, function (j, e) {
-
-                            var box_card = $('<div><div/>', {
-
-                            });
-
-
-                            var titolo = $('<p>', {
-                                text:  e.name,
-                                target: '_blank',
-                                style: 'color:black',
-
-                            });
-
-                            //DATA SISTEMATA
-                            var date001 = e.dateActivity;
-                            // Estrai il timestamp dai millisecondi
-                            var timestamp = parseInt(date001.replace('/Date(', '').replace(')/', ''), 10);
-                            // Crea un oggetto Date
-                            var date = new Date(timestamp);
-                            // Formatta la data nel formato dd/mm/yyyy
-                            var formattedDate = date.toLocaleDateString('it-IT'); // "28/05/2024"
-
-
-                            var check = $(":checkbox");
-                            var descrizione = $('<p>', {
-                                text:  e.description,
-                                target: '_blank',
-                                style: 'height:10px',
-
-                            });
-
-                            var categoria = $('<p>', {
-                                text: e.category,
-                                target: '_blank',
-                                style: 'color:black',
-
-                            });
-
-                            var priorita = $('<p>', {
-                                text: e.priority,
-                                target: '_blank',
-                                style: 'color:black',
-
-                            });
-
-                            box_card.addClass("card")
-                            box_card.append(titolo);
-                            box_card.append(formattedDate);
-                            box_card.append(descrizione);
-                            box_card.append(categoria);
-                            box_card.append(priorita);
-                            box_card.append(check);
-
-                            $("#ExpiredActivities").append(box_card);
+                            $("#Notes").append(box_card);
 
                         })
 
@@ -245,108 +162,85 @@
 
     });
 
-
-    $("#checkActivity").on('click', function () {
-
-        $.confirm({
-            title: 'Nuova Attività',
-            content: '' +
-                '<form action="" class="formName">' +
-                '<div class="form-group" style="display:flex; gap:10px; flex-direction:column ">' +
-
-                    '<input type="text" placeholder="Nome" class="name form-control" required />' +
-                    '<input type="text" placeholder="Descrizione" class="description form-control" required />' +
-                    '<input type="datetime-local" class="date form-control" required />' +
-
-                    '<div class="flex_container icon_colum">' +
-                        '<div class="flex_container gap_block  " >' +
-
-                            ' <label for="dog-names">Priorità </label> ' +
-                            ' <select  name="dog-names" id="priority"> ' +
-                               ' <option value="1"> 1</option> ' +
-                                ' <option value="2">2 </option> '+
-                                ' <option value="3">3</option> '+
-                                '<option value="4">4</option> '+
-                            '</select>' +
-
-                            ' <label for="dog-names">Categoria</label> ' +
-                            ' <select name="dog-names" id="category"> ' +
-                            ' <option value="1"> 1</option> ' +
-                            ' <option value="2">2 </option> ' +
-                            ' <option value="3">3</option> ' +
-                            '<option value="4">4</option> ' +
-                            '</select>' +
-                        '</div>' +
-                    '</div>' +
-                '</div>' +
-                '</form>',
-
-            buttons: {
-                formSubmit: {
-                    text: 'Submit',
-                    btnClass: 'btn-blue',
-                    action: function () {
-
-                        var name = this.$content.find('.name').val();
-                        var description = this.$content.find('.description').val();
-                        var data = this.$content.find('.date').val();
-                        var priority =$('#priority').val();
-                        var category = $('#category').val();
-
-                        if (!name) {
-                            $.alert('nome non inserito');
-                            return false;
-                        } else if (!description) {
-                            $.alert('descrizione non inserita');
-                            return false;
-                        } else if (!data) {
-                            $.alert('data non inserita');
-                            return false;
-                        } else if (!priority) {
-                            $.alert('priorità non inserita');
-                            return false;
-                        } else if (!category) {
-                            $.alert('categoria non inserita');
-                            return false;
-                        }
-                        $.ajax({
-                        type: "POST",
-                            url: '@Url.Action("newActivity", "Activity")?name=' + name + '&description=' + description + '&date=' + data + '&priority=' + priority + '&category=' + category ,
-                        success: function (response) {
-
-                            $.alert('Attività aggiunta');
-
-                            }
-                        })
-
-
-                    }
-                },
-                cancel: function () {
-
-                },
-            }
-        });
-
-    })
-
-
-    //var formatDate = function(date){
-    //    let d = date;
-    //    d = [
-    //        '0' + d.getDate(),
-    //        '0' + (d.getMonth() + 1),
-    //        '' + d.getFullYear(),
-    //        '0' + d.getHours(),
-    //        '0' + d.getMinutes()
-    //    ].map(component => component.slice(-2));
-    //}
-
-
-
-
 </script>
 
 
 
+<script>
 
+            $('#newNotes').on('click', function () {
+
+            $.confirm({
+                title: 'Nuova Nota',
+                content: '' +
+                    '<form action="" class="formName">' +
+                    '<div class="form-group" style="display:flex; gap:10px; flex-direction:column ">' +
+
+                    '<input type="text" placeholder="Nome" class="Title form-control" required />' +
+                    '<input type="datetime-local" class="DateNotes form-control" required />' +
+
+                    '<input type="text" placeholder="Descrizione" class="DescriptionNotes form-control" required />' +
+
+                    '<div class="flex_container icon_colum">' +
+                    '<div class="flex_container gap_block  " >' +
+
+                    ' <label for="dog-names">Categoria</label> ' +
+                    ' <select name="dog-names" id="category"> ' +
+                    ' <option value="1"> 1</option> ' +
+                    ' <option value="2">2 </option> ' +
+                    ' <option value="3">3</option> ' +
+                    '<option value="4">4</option> ' +
+                    '</select>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</form>',
+
+                buttons: {
+                    formSubmit: {
+                        text: 'Submit',
+                        btnClass: 'btn-blue',
+                        action: function () {
+
+                            var name = this.$content.find('.Title').val();
+                            var description = this.$content.find('.DescriptionNotes').val();
+                            var data = this.$content.find('.DateNotes').val();
+                            var category = $('#category').val();
+
+                            if (!name) {
+                                $.alert('nome non inserito');
+                                return false;
+                            } else if (!description) {
+                                $.alert('descrizione non inserita');
+                                return false;
+                            } else if (!data) {
+                                $.alert('data non inserita');
+                                return false;
+                            } else if (!category) {
+                                $.alert('categoria non inserita');
+                                return false;
+                            }
+                            $.ajax({
+                                type: "POST",
+                                url: '@Url.Action("newNotes", "Notes")?title=' + name + '&DescriptionNotes=' + description + '&DateNotes=' + data + '&CategoryNotes=' + category,
+                                success: function (response) {
+
+                                    $.alert('Nota aggiunta');
+
+                                }
+                            })
+
+
+                        }
+                    },
+                    cancel: function () {
+
+                    },
+                }
+            });
+
+        });
+
+
+
+</script>

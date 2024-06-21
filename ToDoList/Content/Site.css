@@ -55,6 +55,8 @@ textarea {
     justify-content:center;
 }
 
+/*Registration and Login*/
+
 .login {
     padding: 10px;
     width: 80%;
@@ -157,6 +159,8 @@ textarea {
     margin-top:5%;
 }
 
+
+/*Attività */
 .card{
     width: 100%;
     gap:15px;
@@ -217,7 +221,6 @@ textarea {
 
 }
 
-
 .info_profile {
     /*background-color: beige;*/
     border-radius: 5px;
@@ -272,8 +275,9 @@ textarea {
     -webkit-box-shadow: 0 0 2px #333333;
     box-shadow: 0 0 2px #333333;
 }
-/*calendario*/
 
+
+/*calendario*/
 
 th {
     height: 30px;
@@ -316,4 +320,14 @@ td:nth-of-type(1) {
 
 .btn_login{
     width:120%;
+}
+
+/*NOTE*/
+
+
+.cardNotes{
+
+    width:50%;
+
+
 }

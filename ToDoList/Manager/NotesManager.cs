@@ -50,7 +50,7 @@ namespace ToDoList.Manager
             List<Notes> retval = new List<Notes>();
             using (SqlConnection dbConn = new SqlConnection(connString))
             {
-                using (SqlCommand cmd = new SqlCommand("usp_findNotes", dbConn)) //eseguo la store procedure
+                using (SqlCommand cmd = new SqlCommand("[dbo].[usp_findNotes]", dbConn)) //eseguo la store procedure
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.Add("@ReturnCode", SqlDbType.Int, 4).Direction = ParameterDirection.Output;

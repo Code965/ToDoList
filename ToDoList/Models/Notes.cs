@@ -7,6 +7,8 @@ namespace ToDoList.Models
 {
     public class Notes
     {
+
+        public int Notes_id { get; set; }
         public string title { get; set; }
         public DateTime DateNotes { get; set; }
         public string DescriptionNotes { get; set; }
