@@ -1,0 +1,837 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    DateTime oggi = DateTime.Now;
+
+}
+
+<head>
+
+</head>
+
+
+<div class="row">
+
+    <div class="intro_div col-md-12">
+        <h2 class="intro flex_container align_center justify_content">
+            TODOLIFE
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-list-task" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z" />
+                <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z" />
+                <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm1 .5H2v1h1z" />
+            </svg>
+
+        </h2>
+
+    </div>
+
+
+    <div class="col-md-12">
+        <h2>Oggi - @oggi</h2>
+        <div class="flex_container" style="gap:10px">
+            <i id="search_filter" class="glyphicon glyphicon-search flex_container align_center justify_content icon_search_input"></i>
+            <input id="value_filter" type="text" name="name" class="inpt_search" value="" placeholder="cerca attività" />
+        </div>
+
+        <div id="ActivityList" class="flex_container flex_wrap flex_gap">
+
+
+        </div>
+
+      
+
+    </div>
+
+    <div class="col-md-12">
+        <h2>Scadute</h2>
+        <div class="flex_container" style="gap:10px">
+            <i id="search_filter_ExpiredActivities" class="glyphicon glyphicon-search flex_container align_center justify_content icon_search_input"></i>
+            <input id="value_filter_ExpiredActivities" type="text" name="name" class="inpt_search" value="" placeholder="cerca attività" />
+        </div>
+
+        <div id="ExpiredActivities" class="flex_container flex_wrap flex_gap">
+
+
+        </div>
+
+    </div>
+
+
+
+
+    <nav class="navbar flex_container align_center justify_content col-md-12">
+
+        <ul class="list-nav flex_container align_center justify_content">
+
+            <li id="checkActivity" class="flex_container align_center justify_content icon_colum">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-folder-plus" viewBox="0 0 16 16">
+                    <path d="m.5 3 .04.87a2 2 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.256-2.819A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2m5.672-1a1 1 0 0 1 .707.293L7.586 3H2.19q-.362.002-.683.12L1.5 2.98a1 1 0 0 1 1-.98z" />
+                    <path d="M13.5 9a.5.5 0 0 1 .5.5V11h1.5a.5.5 0 1 1 0 1H14v1.5a.5.5 0 1 1-1 0V12h-1.5a.5.5 0 0 1 0-1H13V9.5a.5.5 0 0 1 .5-.5" />
+                </svg> Attività
+            </li>
+
+    
+            <li>
+                <a class="flex_container align_center justify_content icon_colum "  href="@Url.Action("Index", "Calendar")" style="color:black">
+                    <svg style="color:black;" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                    </svg> Calendario
+                </a>
+
+            </li>
+
+            <li>
+                <a class="flex_container align_center justify_content icon_colum" href="@Url.Action("Profile", "Account")" style="color:black">
+                    <svg style="color:black;" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
+                        <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                        <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.4 5.4 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2z" />
+                    </svg> Account
+                </a>
+
+            </li>
+
+
+        </ul>
+
+    </nav>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="~/Scripts/jquery-confirm.js" > </script>
+<script href="~/Content/jquery-confirm.css"> </script>
+
+<script>
+
+    $(document).ready(function () {
+
+
+        var today = new Date();
+        var day = today.getDate();
+        var month = (today.getMonth() + 1).toString().padStart(2,'0');
+        var year = today.getFullYear();
+        var hh = today.getHours();
+        var mm = today.getMinutes();
+        var ss = today.getSeconds();
+        var currentDate = year + '-' + month + '-' + day;
+
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("ActivityList", "Activity")?today=' + currentDate ,
+            success: function (response) {
+
+                if (response.length != 0) {
+
+                    $.each(response, function (i, elemento) {
+
+
+                        console.log(elemento)
+                        $.each(elemento, function (j, e) {
+
+                            //creo gli oggetti
+                            var box_card = $('<div><div/>', {
+                                style: 'width:100%; gap:100px'
+                            });
+
+                            var id = e.activity_id;
+                            var date001 = e.dateActivity;
+                            // Estrai il timestamp dai millisecondi
+                            var timestamp = parseInt(date001.replace('/Date(', '').replace(')/', ''), 10);
+                            // Crea un oggetto Date
+                            var date = new Date(timestamp);
+                            // Formatta la data nel formato dd/mm/yyyy
+                            var formattedDate = date.toLocaleDateString('it-IT');
+
+                            var titolo = $('<p>', {
+                                text: e.name,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var descrizione = $('<p>', {
+                                text: e.description,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var dataUltimate = $('<p>', {
+                                text: formattedDate,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var categoria = $('<p>', {
+                                text: e.category,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var priorita = $('<p>', {
+                                text: e.priority,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var modifica = $('<a>', {
+                                target: '_blank',
+                                class: 'btn btn-primary glyphicon glyphicon-pencil ',
+                                id: 'modifica',
+                                style: ' display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            }).on('click', function () {
+                                        $.confirm({
+                                            title: 'Modifica Attività',
+                                            content: '' +
+                                                '<form action="" class="formName">' +
+                                                '<div class="form-group" style="display:flex; gap:10px; flex-direction:column ">' +
+
+                                                    '<input type="text" placeholder="Nome" class="name form-control" required  value="'+ e.name + '"/>' +
+                                                    '<input type="text" placeholder="Descrizione" class="description form-control" required value="' + e.description + '"/>' +
+                                                    '<input type="datetime-local" class="date form-control" required/>' +
+
+                                                    '<div class="flex_container icon_colum">' +
+                                                        '<div class="flex_container gap_block  " >' +
+
+                                                            ' <label for="dog-names">Priorità </label> ' +
+                                                            ' <select  name="dog-names" id="priority"> ' +
+                                                               ' <option value="1"> 1</option> ' +
+                                                                ' <option value="2">2 </option> '+
+                                                                ' <option value="3">3</option> '+
+                                                                '<option value="4">4</option> '+
+                                                            '</select>' +
+
+                                                            ' <label for="dog-names">Categoria</label> ' +
+                                                            ' <select name="dog-names" id="category"> ' +
+                                                            ' <option value="1"> 1</option> ' +
+                                                            ' <option value="2">2 </option> ' +
+                                                            ' <option value="3">3</option> ' +
+                                                            '<option value="4">4</option> ' +
+                                                            '</select>' +
+                                                        '</div>' +
+                                                    '</div>' +
+                                                '</div>' +
+                                                '</form>',
+
+                                            buttons: {
+                                                formSubmit: {
+                                                    text: 'Submit',
+                                                    btnClass: 'btn-blue',
+                                                    action: function () {
+
+                                                        var name = this.$content.find('.name').val();
+                                                        var description = this.$content.find('.description').val();
+                                                        var data = this.$content.find('.date').val();
+                                                        var priority =$('#priority').val();
+                                                        var category = $('#category').val();
+
+                                                        console.log(name,description,data,priority,category)
+
+
+                                                        if (!name) {
+                                                            $.alert('nome non inserito');
+                                                            return false;
+                                                        } else if (!description) {
+                                                            $.alert('descrizione non inserita');
+                                                            return false;
+                                                        } else if (!data) {
+                                                            $.alert('data non inserita');
+                                                            return false;
+                                                        } else if (!priority) {
+                                                            $.alert('priorità non inserita');
+                                                            return false;
+                                                        } else if (!category) {
+                                                            $.alert('categoria non inserita');
+                                                            return false;
+                                                        }
+
+                                                        $.ajax({
+                                                        type: "POST",
+                                                            url: '@Url.Action("EditActivity", "Activity")?activity_id=' + id + '&name=' + name + '&description=' + description + '&dateActivity=' + data + '&priority=' + priority + '&category=' + category ,
+                                                            success: function (response) {
+
+                                                                history.go(0)
+
+                                                            }
+                                                        })
+
+                                                    }
+                                                },
+                                                cancel: function () {
+
+                                                },
+                                            }
+                                        });
+
+
+                            });
+
+                            var elimina = $('<a>', {
+                                target: '_blank',
+                                class: 'btn btn-primary glyphicon glyphicon-trash ',
+                                id: 'elimina',
+                                style: ' display:flex;align-items:center; justify-content:center; margin-top:10px',
+
+                            }).on('click', function () {
+
+                                  $.confirm({
+                                            title: 'Elimina Attività',
+                                            content: '' +
+                                                '<h1></h1>' ,
+
+                                            buttons: {
+                                                formSubmit: {
+                                                    text: 'Cancella',
+                                                    btnClass: 'btn-blue',
+                                                    action: function () {
+
+
+
+                                                        $.ajax({
+                                                        type: "POST",
+                                                            url: '@Url.Action("RemoveActivity", "Activity")?id=' + id ,
+                                                            success: function (response) {
+
+
+                                                                history.go(0)
+
+                                                            }
+                                                        })
+
+                                                    }
+                                                },
+                                                cancel: function () {
+
+                                                },
+                                            }
+                                        });
+
+
+
+                            });
+
+                            var checkbox = $('<input> ', {
+                                text: e.category,
+                                type: 'checkbox',
+                                target: '_blank',
+                                style: '',
+                            });
+
+                            //aggiungo
+                            box_card.addClass("card");
+                            box_card.append(checkbox);
+                            box_card.append(titolo);
+                            box_card.append(descrizione);
+                            box_card.append(dataUltimate);
+                            box_card.append(categoria);
+                            box_card.append(priorita);
+                            box_card.append(modifica);
+                            box_card.append(elimina);
+
+                            $("#ActivityList").append(box_card);
+                          
+                            
+
+                        });
+                    });
+                } else {
+                    console.log("vuoto");
+                }
+            }
+        });
+
+
+        //ATTIVITà SCADUTE
+
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("ExpiredActivities", "Activity")?today=' + currentDate ,
+            success: function (response) {
+
+                if (response.length != 0) {
+
+                    $.each(response, function (i, elemento) {
+
+                        $.each(elemento, function (j, e) {
+
+                            var box_card = $('<div><div/>', {
+                                style: 'width:100%; gap:100px'
+                            });
+
+
+                            var titolo = $('<p>', {
+                                text:  e.name,
+                                target: '_blank',
+                                style: 'color:black',
+
+                            });
+
+                            //DATA SISTEMATA
+                            var date001 = e.dateActivity;
+                            // Estrai il timestamp dai millisecondi
+                            var timestamp = parseInt(date001.replace('/Date(', '').replace(')/', ''), 10);
+                            // Crea un oggetto Date
+                            var date = new Date(timestamp);
+                            // Formatta la data nel formato dd/mm/yyyy
+                            var formattedDate = date.toLocaleDateString('it-IT'); // "28/05/2024"
+
+
+                            var newDate = $('<p>', {
+                                text: formattedDate,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var descrizione = $('<p>', {
+                                text:  e.description,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var categoria = $('<p>', {
+                                text: e.category,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var priorita = $('<p>', {
+                                text: e.priority,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+
+                            box_card.addClass("card")
+                            box_card.append(titolo);
+                            box_card.append(newDate);
+                            box_card.append(descrizione);
+                            box_card.append(categoria);
+                            box_card.append(priorita);
+
+                            //box_card.append(modifica);
+                            //box_card.append(elimina);
+
+                            $("#ExpiredActivities").append(box_card);
+                        })
+                    });
+
+                } else {
+                    console.log("vuoto");
+                }
+            }
+        });
+
+    });
+
+
+
+
+    $('#modifica').on('click', function () {
+        alert("MODIFICA")
+    })
+
+
+    $("#checkActivity").on('click', function () {
+
+        $.confirm({
+            title: 'Nuova Attività',
+            content: '' +
+                '<form action="" class="formName">' +
+                '<div class="form-group" style="display:flex; gap:10px; flex-direction:column ">' +
+
+                    '<input type="text" placeholder="Nome" class="name form-control" required />' +
+                    '<input type="text" placeholder="Descrizione" class="description form-control" required />' +
+                    '<input type="datetime-local" class="date form-control" required />' +
+
+                    '<div class="flex_container icon_colum">' +
+                        '<div class="flex_container gap_block  " >' +
+
+                            ' <label for="dog-names">Priorità </label> ' +
+                            ' <select  name="dog-names" id="priority"> ' +
+                               ' <option value="1"> 1</option> ' +
+                                ' <option value="2">2 </option> '+
+                                ' <option value="3">3</option> '+
+                                '<option value="4">4</option> '+
+                            '</select>' +
+
+                            ' <label for="dog-names">Categoria</label> ' +
+                            ' <select name="dog-names" id="category"> ' +
+                            ' <option value="1"> 1</option> ' +
+                            ' <option value="2">2 </option> ' +
+                            ' <option value="3">3</option> ' +
+                            '<option value="4">4</option> ' +
+                            '</select>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+                '</form>',
+
+            buttons: {
+                formSubmit: {
+                    text: 'Submit',
+                    btnClass: 'btn-blue',
+                    action: function () {
+
+                        var name = this.$content.find('.name').val();
+                        var description = this.$content.find('.description').val();
+                        var data = this.$content.find('.date').val();
+                        var priority =$('#priority').val();
+                        var category = $('#category').val();
+
+                        if (!name) {
+                            $.alert('nome non inserito');
+                            return false;
+                        } else if (!description) {
+                            $.alert('descrizione non inserita');
+                            return false;
+                        } else if (!data) {
+                            $.alert('data non inserita');
+                            return false;
+                        } else if (!priority) {
+                            $.alert('priorità non inserita');
+                            return false;
+                        } else if (!category) {
+                            $.alert('categoria non inserita');
+                            return false;
+                        }
+                        $.ajax({
+                        type: "POST",
+                            url: '@Url.Action("newActivity", "Activity")?name=' + name + '&description=' + description + '&date=' + data + '&priority=' + priority + '&category=' + category ,
+                            success: function (response) {
+
+
+                                history.go(0)
+
+                            }
+                        })
+
+                    }
+                },
+                cancel: function () {
+
+                },
+            }
+        });
+
+    })
+
+
+
+    $('#search_filter').on('click', function () {
+
+        var filtro = $('#value_filter').val();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("filterActivity", "Activity")?filter=' + filtro ,
+            success: function (response) {
+                $("#ActivityList").empty();
+                   if (response.length != 0) {
+
+                    $.each(response, function (i, elemento) {
+
+
+                        console.log(elemento)
+                        $.each(elemento, function (j, e) {
+
+                            //creo gli oggetti
+                            var box_card_filter = $('<div><div/>', {
+                                style: 'width:100%; gap:100px'
+                            });
+
+                            var id = e.activity_id;
+                            var date001 = e.dateActivity;
+                            // Estrai il timestamp dai millisecondi
+                            var timestamp = parseInt(date001.replace('/Date(', '').replace(')/', ''), 10);
+                            // Crea un oggetto Date
+                            var date = new Date(timestamp);
+                            // Formatta la data nel formato dd/mm/yyyy
+                            var formattedDate = date.toLocaleDateString('it-IT');
+
+                            var titolo = $('<p>', {
+                                text: e.name,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var descrizione = $('<p>', {
+                                text: e.description,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var dataUltimate = $('<p>', {
+                                text: formattedDate,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var categoria = $('<p>', {
+                                text: e.category,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var priorita = $('<p>', {
+                                text: e.priority,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var modifica = $('<a>', {
+                                target: '_blank',
+                                class: 'btn btn-primary glyphicon glyphicon-pencil ',
+                                id: 'modifica',
+                                style: ' display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            }).on('click', function () {
+                                        $.confirm({
+                                            title: 'Modifica Attività',
+                                            content: '' +
+                                                '<form action="" class="formName">' +
+                                                '<div class="form-group" style="display:flex; gap:10px; flex-direction:column ">' +
+
+                                                    '<input type="text" placeholder="Nome" class="name form-control" required  value="'+ e.name + '"/>' +
+                                                    '<input type="text" placeholder="Descrizione" class="description form-control" required value="' + e.description + '"/>' +
+                                                    '<input type="datetime-local" class="date form-control" required/>' +
+
+                                                    '<div class="flex_container icon_colum">' +
+                                                        '<div class="flex_container gap_block  " >' +
+
+                                                            ' <label for="dog-names">Priorità </label> ' +
+                                                            ' <select  name="dog-names" id="priority"> ' +
+                                                               ' <option value="1"> 1</option> ' +
+                                                                ' <option value="2">2 </option> '+
+                                                                ' <option value="3">3</option> '+
+                                                                '<option value="4">4</option> '+
+                                                            '</select>' +
+
+                                                            ' <label for="dog-names">Categoria</label> ' +
+                                                            ' <select name="dog-names" id="category"> ' +
+                                                            ' <option value="1"> 1</option> ' +
+                                                            ' <option value="2">2 </option> ' +
+                                                            ' <option value="3">3</option> ' +
+                                                            '<option value="4">4</option> ' +
+                                                            '</select>' +
+                                                        '</div>' +
+                                                    '</div>' +
+                                                '</div>' +
+                                                '</form>',
+
+                                            buttons: {
+                                                formSubmit: {
+                                                    text: 'Submit',
+                                                    btnClass: 'btn-blue',
+                                                    action: function () {
+
+                                                        var name = this.$content.find('.name').val();
+                                                        var description = this.$content.find('.description').val();
+                                                        var data = this.$content.find('.date').val();
+                                                        var priority =$('#priority').val();
+                                                        var category = $('#category').val();
+
+                                                        console.log(name,description,data,priority,category)
+
+
+                                                        if (!name) {
+                                                            $.alert('nome non inserito');
+                                                            return false;
+                                                        } else if (!description) {
+                                                            $.alert('descrizione non inserita');
+                                                            return false;
+                                                        } else if (!data) {
+                                                            $.alert('data non inserita');
+                                                            return false;
+                                                        } else if (!priority) {
+                                                            $.alert('priorità non inserita');
+                                                            return false;
+                                                        } else if (!category) {
+                                                            $.alert('categoria non inserita');
+                                                            return false;
+                                                        }
+
+                                                        $.ajax({
+                                                        type: "POST",
+                                                            url: '@Url.Action("EditActivity", "Activity")?activity_id=' + id + '&name=' + name + '&description=' + description + '&dateActivity=' + data + '&priority=' + priority + '&category=' + category ,
+                                                            success: function (response) {
+
+                                                                history.go(0)
+
+                                                            }
+                                                        })
+
+                                                    }
+                                                },
+                                                cancel: function () {
+
+                                                },
+                                            }
+                                        });
+
+
+                            });
+
+                            var elimina = $('<a>', {
+                                target: '_blank',
+                                class: 'btn btn-primary glyphicon glyphicon-trash ',
+                                id: 'elimina',
+                                style: ' display:flex;align-items:center; justify-content:center; margin-top:10px',
+
+                            }).on('click', function () {
+
+                                  $.confirm({
+                                            title: 'Elimina Attività',
+                                            content: '' +
+                                                '<h1></h1>' ,
+
+                                            buttons: {
+                                                formSubmit: {
+                                                    text: 'Cancella',
+                                                    btnClass: 'btn-blue',
+                                                    action: function () {
+
+
+
+                                                        $.ajax({
+                                                        type: "POST",
+                                                            url: '@Url.Action("RemoveActivity", "Activity")?id=' + id ,
+                                                            success: function (response) {
+
+
+                                                                history.go(0)
+
+                                                            }
+                                                        })
+
+                                                    }
+                                                },
+                                                cancel: function () {
+
+                                                },
+                                            }
+                                        });
+
+
+
+                            });
+
+                            var checkbox = $('<input> ', {
+                                text: e.category,
+                                type: 'checkbox',
+                                target: '_blank',
+                                style: '',
+                            });
+
+                            //aggiungo
+
+
+
+                            box_card_filter.addClass("card");
+                            box_card_filter.append(checkbox);
+                            box_card_filter.append(titolo);
+                            box_card_filter.append(descrizione);
+                            box_card_filter.append(dataUltimate);
+                            box_card_filter.append(categoria);
+                            box_card_filter.append(priorita);
+                            box_card_filter.append(modifica);
+                            box_card_filter.append(elimina);
+
+                            $("#ActivityList").append(box_card_filter);
+
+                        });
+                    });
+                   } else {
+
+                      console.log("non trovato")
+
+                }
+            }
+        })
+    })
+
+    $('#search_filter_ExpiredActivities').on('click', function () {
+
+        var filtro = $('#value_filter_ExpiredActivities').val();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("filterActivity_ExpiredActivities", "Activity")?filter=' + filtro ,
+            success: function (response) {
+                $("#ExpiredActivities").empty();
+                   if (response.length != 0) {
+
+                    $.each(response, function (i, elemento) {
+
+
+                        console.log(elemento)
+                        $.each(elemento, function (j, e) {
+
+                            //creo gli oggetti
+                            var box_card_filter = $('<div><div/>', {
+                                style: 'width:100%; gap:100px'
+                            });
+
+                            var id = e.activity_id;
+                            var date001 = e.dateActivity;
+                            // Estrai il timestamp dai millisecondi
+                            var timestamp = parseInt(date001.replace('/Date(', '').replace(')/', ''), 10);
+                            // Crea un oggetto Date
+                            var date = new Date(timestamp);
+                            // Formatta la data nel formato dd/mm/yyyy
+                            var formattedDate = date.toLocaleDateString('it-IT');
+
+                            var titolo = $('<p>', {
+                                text: e.name,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var descrizione = $('<p>', {
+                                text: e.description,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var dataUltimate = $('<p>', {
+                                text: formattedDate,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var categoria = $('<p>', {
+                                text: e.category,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            var priorita = $('<p>', {
+                                text: e.priority,
+                                target: '_blank',
+                                style: 'width:100%; display:flex;align-items:center; justify-content:center; margin-top:10px',
+                            });
+
+                            box_card_filter.addClass("card");
+                            
+                            box_card_filter.append(titolo);
+                            box_card_filter.append(descrizione);
+                            box_card_filter.append(dataUltimate);
+                            box_card_filter.append(categoria);
+                            box_card_filter.append(priorita);
+                            
+
+                            $("#ExpiredActivities").append(box_card_filter);
+
+                        });
+                    });
+                   } else {
+
+                      console.log("non trovato")
+
+                }
+            }
+        })
+    })
+
+</script>
+
+
+
+

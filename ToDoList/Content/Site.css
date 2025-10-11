@@ -1,0 +1,333 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: none;
+}
+
+.link{
+    color:black;
+}
+
+.flex_container{
+    display:flex;
+}
+.flex_wrap{
+    flex-wrap:wrap;
+}
+
+/*.flex_gap{
+    gap:5px;
+}*/
+
+.flex_column{
+    flex-direction:column;
+}
+.gap_block{
+    gap:5px;
+}
+
+
+.align_center{
+    align-items:center;
+}
+
+.justify_content{
+    justify-content:center;
+}
+
+/*Registration and Login*/
+
+.login {
+    padding: 10px;
+    width: 80%;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.login button {
+    height: 50px;
+    outline: none;
+    list-style: none;
+    border-radius: 5px;
+    border: none;
+}
+
+.registration {
+    padding: 10px;
+    width: 40%;
+}
+
+.registration .btnC {
+
+    margin-top:20px;
+    flex-direction:column;
+    gap:5px;
+}
+
+.registration .btnC a{
+
+    font-size:10px;
+}
+
+.registration .btnC button {
+    outline: none;
+    max-width:none;
+    list-style: none;
+    border:none;
+    height:50px;
+    border-radius: 5px;
+   
+}
+
+.registration .btnC button:hover {
+    background-color: #77797A;
+    color: white;
+}
+
+.inpt_login {
+    width: 120%;
+    max-width: none;
+    border: 0.5px grey solid;
+    box-sizing: border-box;
+    border-radius: 5px;
+    list-style: none;
+    height: 50px;
+    outline: none;
+    font-family: inherit;
+    font-size: var(--reactist-font-size-body);
+    margin: 0;
+    padding: 5px;
+}
+
+
+.inpt_create {
+    width: 100%;
+    max-width: none;
+    border: 0.5px grey solid;
+    box-sizing: border-box;
+    border-radius: 5px;
+    list-style: none;
+    height: 50px;
+    outline: none;
+    font-family: inherit;
+    font-size: var(--reactist-font-size-body);
+    margin: 0;
+    padding: 5px;
+}
+
+
+.list-nav {
+    gap: 50px;
+    width: 90%;
+    padding: 10px;
+    list-style: none;
+}
+
+.intro_div {
+    margin-bottom: 50px;
+}
+.intro_div .intro {
+    gap: 20px;
+    font-size: 100px;
+}
+
+.icon_colum{
+    flex-direction:column;
+}
+
+.navbar{
+    margin-top:5%;
+}
+
+
+/*Attività */
+.card{
+    width: 100%;
+    gap:15px;
+    display:flex;
+}
+
+
+.cardExpiredActivities {
+    width: 100%;
+    gap:30px;
+    display: flex;
+}
+
+.inpt_search{
+    padding: 5px;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    outline: none;
+    -moz-box-shadow: 0 0 2px #333333;
+    -webkit-box-shadow: 0 0 2px #333333;
+    box-shadow: 0 0 2px #333333;
+}
+
+.icon_search_input {
+    border-radius: 5px;
+    padding: 10px;
+    -moz-box-shadow: 0 0 2px #333333;
+    -webkit-box-shadow: 0 0 2px #333333;
+    box-shadow: 0 0 2px #333333;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#ActivityList {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+
+}
+
+#ExpiredActivities {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+/*Profile*/
+
+.boxTab{
+
+
+}
+
+.info_profile {
+    /*background-color: beige;*/
+    border-radius: 5px;
+    height: 410px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    -moz-box-shadow: 0 0 2px #333333;
+    -webkit-box-shadow: 0 0 2px #333333;
+    box-shadow: 0 0 2px #333333;
+}
+
+.expiredActivities {
+    width: 25%;
+    height: 205px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    -moz-box-shadow: 0 0 2px #333333;
+    -webkit-box-shadow: 0 0 2px #333333;
+    box-shadow: 0 0 2px #333333;
+}
+
+.editEmail {
+    width: 25%;
+    border-radius: 5px;
+    height: 205px;
+    /*    background-color: aqua;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    -moz-box-shadow: 0 0 2px #333333;
+    -webkit-box-shadow: 0 0 2px #333333;
+    box-shadow: 0 0 2px #333333;
+}
+
+.changePassword {
+    width: 25%;
+    border-radius: 5px;
+    /*    background-color: red;*/
+    height: 205px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    -moz-box-shadow: 0 0 2px #333333;
+    -webkit-box-shadow: 0 0 2px #333333;
+    box-shadow: 0 0 2px #333333;
+}
+
+
+/*calendario*/
+
+th {
+    height: 30px;
+    text-align: center;
+    font-weight: 700;
+}
+
+td {
+    height: 100px;
+}
+
+.today {
+    background-color: gray;
+}
+
+th:nth-of-type(7),
+td:nth-of-type(7) {
+    font-weight: bold;
+}
+
+th:nth-of-type(1),
+td:nth-of-type(1) {
+    font-weight: bold;
+}
+
+
+.select_input{
+    width:120%;
+    padding:3px;
+    border-radius:5px;
+    height:30px;
+}
+
+.option_input{
+    margin:10px 10px 10px 10px;
+    height: 50px;
+    font-size:15px;
+    outline:none;
+}
+
+.btn_login{
+    width:120%;
+}
+
+/*NOTE*/
+
+
+.cardNotes{
+
+    width:50%;
+
+
+}

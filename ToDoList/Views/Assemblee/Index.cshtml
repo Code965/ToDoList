@@ -1,0 +1,351 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    DateTime oggi = DateTime.Now;
+
+}
+
+<head>
+
+</head>
+
+
+<div class="row">
+
+    <div class="intro_div col-md-12">
+        <h2 class="intro flex_container align_center justify_content">
+            ASSEMBLEELIFE
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-list-task" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z" />
+                <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z" />
+                <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm1 .5H2v1h1z" />
+            </svg>
+
+        </h2>
+
+    </div>
+
+
+    <div class="col-md-12">
+        <h2>Assemblee</h2>
+        <div class="flex_container" style="gap:10px">
+            <i class="glyphicon glyphicon-search flex_container align_center justify_content icon_search_input"></i>
+            <input type="text" name="name" class="inpt_search" value="" placeholder="cerca attività" />
+        </div>
+
+        <div id="" class="flex_container flex_wrap flex_gap">
+
+
+        </div>
+
+    </div>
+
+  
+
+
+
+
+    <nav class="navbar flex_container align_center justify_content col-md-12">
+
+        <ul class="list-nav flex_container align_center justify_content">
+
+            <li id="checkActivity" class="flex_container align_center justify_content icon_colum">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-building-fill-add" viewBox="0 0 16 16">
+                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0" />
+                    <path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7.256A4.5 4.5 0 0 0 12.5 8a4.5 4.5 0 0 0-3.59 1.787A.5.5 0 0 0 9 9.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .39-.187A4.5 4.5 0 0 0 8.027 12H6.5a.5.5 0 0 0-.5.5V16H3a1 1 0 0 1-1-1zm2 1.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m3 0v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5m3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM4 5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm2.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5M4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z" />
+                </svg> Assemblee
+            </li>
+
+
+            
+
+            <li>
+                <a class="flex_container align_center justify_content icon_colum" href="@Url.Action("Profile", "Account")">
+                    <svg style="color:black;" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
+                        <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                        <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.4 5.4 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2z" />
+                    </svg> Account
+                </a>
+
+            </li>
+
+
+        </ul>
+
+    </nav>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="~/Scripts/jquery-confirm.js"></script>
+<script href="~/Content/jquery-confirm.css"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+
+        var today = new Date();
+        var day = today.getDate();
+        var month = (today.getMonth() + 1).toString().padStart(2,'0');
+        var year = today.getFullYear();
+        var hh = today.getHours();
+        var mm = today.getMinutes();
+        var ss = today.getSeconds();
+
+        var currentDate = year + '-' + month + '-' + day;
+
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("ActivityList", "Activity")?today=' + currentDate ,
+            success: function (response) {
+                if (response.length != 0) {
+
+                    $.each(response, function (i, elemento) {
+
+                        $.each(elemento, function (j, e) {
+
+                            //creo gli oggetti
+
+                            var box_card = $('<div><div/>', {
+
+                            });
+
+                            var titolo = $('<p>', {
+                                text:  e.name,
+                                target: '_blank',
+                                style: 'color:black',
+                            });
+
+
+                            var descrizione = $('<p>', {
+                                text: e.description ,
+                                target: '_blank',
+                                style: 'display:flex',
+                            });
+
+                            var categoria = $('<p>', {
+                                text: e.category,
+                                target: '_blank',
+                                style: 'color:black',
+                            });
+
+                            var priorita = $('<p>', {
+                                text: e.priority,
+                                target: '_blank',
+                                style: 'color:black',
+                            });
+
+                            var date001 = e.dateActivity;
+                            // Estrai il timestamp dai millisecondi
+                            var timestamp = parseInt(date001.replace('/Date(', '').replace(')/', ''), 10);
+                            // Crea un oggetto Date
+                            var date = new Date(timestamp);
+                            // Formatta la data nel formato dd/mm/yyyy
+                            var formattedDate = date.toLocaleDateString('it-IT');
+
+                            //aggiungo
+                            box_card.addClass("card")
+                            box_card.append(titolo);
+                            box_card.append(formattedDate);
+                            box_card.append(descrizione);
+                            box_card.append(categoria);
+                            box_card.append(priorita);
+
+                            $("#ActivityList").append(box_card);
+
+                        })
+
+
+                    });
+                } else {
+                    console.log("vuoto");
+                }
+            }
+        });
+
+
+
+
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("ExpiredActivities", "Activity")?today=' + currentDate ,
+            success: function (response) {
+                if (response.length != 0) {
+
+                    $.each(response, function (i, elemento) {
+
+                        $.each(elemento, function (j, e) {
+
+                            var box_card = $('<div><div/>', {
+
+                            });
+
+
+                            var titolo = $('<p>', {
+                                text:  e.name,
+                                target: '_blank',
+                                style: 'color:black',
+
+                            });
+
+                            //DATA SISTEMATA
+                            var date001 = e.dateActivity;
+                            // Estrai il timestamp dai millisecondi
+                            var timestamp = parseInt(date001.replace('/Date(', '').replace(')/', ''), 10);
+                            // Crea un oggetto Date
+                            var date = new Date(timestamp);
+                            // Formatta la data nel formato dd/mm/yyyy
+                            var formattedDate = date.toLocaleDateString('it-IT'); // "28/05/2024"
+
+
+                            var check = $(":checkbox");
+                            var descrizione = $('<p>', {
+                                text:  e.description,
+                                target: '_blank',
+                                style: 'height:10px',
+
+                            });
+
+                            var categoria = $('<p>', {
+                                text: e.category,
+                                target: '_blank',
+                                style: 'color:black',
+
+                            });
+
+                            var priorita = $('<p>', {
+                                text: e.priority,
+                                target: '_blank',
+                                style: 'color:black',
+
+                            });
+
+                            box_card.addClass("card")
+                            box_card.append(titolo);
+                            box_card.append(formattedDate);
+                            box_card.append(descrizione);
+                            box_card.append(categoria);
+                            box_card.append(priorita);
+                            box_card.append(check);
+
+                            $("#ExpiredActivities").append(box_card);
+
+                        })
+
+
+                    });
+                } else {
+                    console.log("vuoto");
+                }
+            }
+        });
+
+    });
+
+
+    $("#checkActivity").on('click', function () {
+
+        $.confirm({
+            title: 'Nuova Attività',
+            content: '' +
+                '<form action="" class="formName">' +
+                '<div class="form-group" style="display:flex; gap:10px; flex-direction:column ">' +
+
+                    '<input type="text" placeholder="Nome" class="name form-control" required />' +
+                    '<input type="text" placeholder="Descrizione" class="description form-control" required />' +
+                    '<input type="datetime-local" class="date form-control" required />' +
+
+                    '<div class="flex_container icon_colum">' +
+                        '<div class="flex_container gap_block  " >' +
+
+                            ' <label for="dog-names">Priorità </label> ' +
+                            ' <select  name="dog-names" id="priority"> ' +
+                               ' <option value="1"> 1</option> ' +
+                                ' <option value="2">2 </option> '+
+                                ' <option value="3">3</option> '+
+                                '<option value="4">4</option> '+
+                            '</select>' +
+
+                            ' <label for="dog-names">Categoria</label> ' +
+                            ' <select name="dog-names" id="category"> ' +
+                            ' <option value="1"> 1</option> ' +
+                            ' <option value="2">2 </option> ' +
+                            ' <option value="3">3</option> ' +
+                            '<option value="4">4</option> ' +
+                            '</select>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+                '</form>',
+
+            buttons: {
+                formSubmit: {
+                    text: 'Submit',
+                    btnClass: 'btn-blue',
+                    action: function () {
+
+                        var name = this.$content.find('.name').val();
+                        var description = this.$content.find('.description').val();
+                        var data = this.$content.find('.date').val();
+                        var priority =$('#priority').val();
+                        var category = $('#category').val();
+
+                        if (!name) {
+                            $.alert('nome non inserito');
+                            return false;
+                        } else if (!description) {
+                            $.alert('descrizione non inserita');
+                            return false;
+                        } else if (!data) {
+                            $.alert('data non inserita');
+                            return false;
+                        } else if (!priority) {
+                            $.alert('priorità non inserita');
+                            return false;
+                        } else if (!category) {
+                            $.alert('categoria non inserita');
+                            return false;
+                        }
+                        $.ajax({
+                        type: "POST",
+                            url: '@Url.Action("newActivity", "Activity")?name=' + name + '&description=' + description + '&date=' + data + '&priority=' + priority + '&category=' + category ,
+                        success: function (response) {
+
+                            $.alert('Attività aggiunta');
+
+                            }
+                        })
+
+
+                    }
+                },
+                cancel: function () {
+
+                },
+            }
+        });
+
+    })
+
+
+    //var formatDate = function(date){
+    //    let d = date;
+    //    d = [
+    //        '0' + d.getDate(),
+    //        '0' + (d.getMonth() + 1),
+    //        '' + d.getFullYear(),
+    //        '0' + d.getHours(),
+    //        '0' + d.getMinutes()
+    //    ].map(component => component.slice(-2));
+    //}
+
+
+
+
+</script>
+
+
+
+

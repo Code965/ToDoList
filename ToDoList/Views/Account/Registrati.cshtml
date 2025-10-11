@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Registrati";
+}
+
+<div class="row flex_container justify_content ">
+
+
+    <div class="col-md-12 registrationBox flex_container align_center " style="gap:10%;">
+
+        <form id="myForm" class="flex_container registration" style="flex-direction:column; gap:10px;">
+            <h2 align="left">Registrati</h2>
+
+            <div class="flex_container justify_content align_center" style="flex-direction:column; gap:10px;">
+
+            </div>
+
+            <div class="flex_container justify_content align_center " style="flex-direction:column; gap:10px;">
+                <input class="inpt_create" type="text" name="name" placeholder="Name" />
+                <input class="inpt_create" type="text" name="surname" placeholder="Surname" />
+                <input class="inpt_create" type="text" name="email" placeholder="Email" />
+                <input class="inpt_create" type="password" name="password" value="" placeholder="Password" />
+                <input class="inpt_create" type="date" name="dateBirth" value="" placeholder="Data di Nascita" />
+
+            </div>
+
+            <div class="btnC flex_container">
+                <button onclick="aggiungiUtente()">  Registrati </button>
+                <a class="btn btn-primary" href="@Url.Action("Index","Home")"><h5>Indietro</h5></a>
+
+
+            </div>
+        </form>
+
+        <div>
+
+            <h2>slider</h2>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+
+    $(document).ready(function () {
+        console.log("ciao")
+    })
+
+    var aggiungiUtente = function () {
+
+        var data = $("#myForm").serialize();
+
+        $.ajax({
+            type:"POST",
+            url: "@Url.Action("Registrati","Account")",
+            data: data,
+            success: function (res) {
+                console.log("aggiunto");
+            }
+        })
+
+
+    }
+
+
+
+
+</script>
